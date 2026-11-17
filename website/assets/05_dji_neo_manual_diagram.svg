@@ -14,6 +14,14 @@
       .badge-warn { fill: #d97706; stroke: #ffffff; stroke-width: 1.5; }
       .badge-num { fill: #ffffff; font-family: system-ui, sans-serif; font-size: 11px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
       .callout-line { stroke: #38bdf8; stroke-width: 1.8; stroke-dasharray: 3,2; }
+      @keyframes badge-highlight {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.18); }
+      }
+      .badge-warn { transform-box: fill-box; transform-origin: center; }
+      @media (prefers-reduced-motion: no-preference) {
+        .badge-warn { animation: badge-highlight 1.8s ease-in-out 2; }
+      }
     </style>
   </defs>
 

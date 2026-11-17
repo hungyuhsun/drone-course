@@ -23,6 +23,9 @@
         <button type="button" id="open-timer-btn" class="btn btn-primary">
           <span aria-hidden="true">⏱️</span> 課堂計時器
         </button>
+        <button type="button" id="motion-toggle-btn" class="btn btn-secondary">
+          ⏸️ 暫停動態效果
+        </button>
         <button type="button" id="theme-toggle-btn" class="btn btn-secondary" aria-pressed="false">
           <span aria-hidden="true">🌗</span> <span class="theme-label">切換深淺色</span>
         </button>
@@ -100,7 +103,15 @@
         </div>
       </div>
 
-      <div class="study-grid">
+      <div class="study-toolbar">
+        <span class="study-toolbar-hint">💡 點擊下方單元標題可平滑展開／收合內容，也可直接操作互動動畫模擬器：</span>
+        <button type="button" id="toggle-all-units-btn" class="btn btn-secondary" commandfor="study-accordion" command="--toggle-all" aria-expanded="false">
+          <span class="expand">📂 展開全部講義單元</span>
+          <span class="collapse">📁 收合全部講義單元</span>
+        </button>
+      </div>
+
+      <div class="study-grid" id="study-accordion" aria-label="4 週課程研讀講義單元">
         <details class="study-unit" open>
           <summary>Unit 1（第 1 週講義）：認識 DJI Neo 機身部件（官方手冊圖解）、正反槳力學與三大感測器</summary>
           <div class="study-body">
@@ -130,6 +141,104 @@
                 <a href="https://www.dji.com/tw/neo" target="_blank" rel="noopener noreferrer">DJI Neo 官方產品規格圖</a>
               </figcaption>
             </figure>
+
+            <!-- 互動四軸正反槳與姿態動態模擬器 -->
+            <div class="rotor-interactive-box" aria-label="四軸正反槳轉速與飛行姿態互動動畫">
+              <div class="rotor-box-header">
+                <h5>🎛️ 互動動畫實驗：點擊動作觀察「4 顆馬達轉速差」如何控制飛行姿態</h5>
+                <p>四軸無人機沒有方向盤或尾翼，全靠改變 4 顆馬達的<strong>相對轉速（RPM）</strong>來升降、轉向與平移：</p>
+              </div>
+              <div class="maneuver-btns" role="group" aria-label="選擇飛行操控動作">
+                <button type="button" class="chip active" data-maneuver="hover">🟢 穩定懸停 (Hover)</button>
+                <button type="button" class="chip" data-maneuver="throttle-up">⬆️ 油門上升 (Throttle+)</button>
+                <button type="button" class="chip" data-maneuver="yaw-right">↪️ 機頭右轉 (Yaw ↻)</button>
+                <button type="button" class="chip" data-maneuver="yaw-left">↩️ 機頭左轉 (Yaw ↺)</button>
+                <button type="button" class="chip" data-maneuver="pitch-fwd">⏩ 俯仰前進 (Pitch+)</button>
+                <button type="button" class="chip" data-maneuver="roll-right">➡️ 橫滾右移 (Roll+)</button>
+              </div>
+              <div class="rotor-sim-grid">
+                <div class="rotor-stage">
+                  <svg id="live-quad-svg" viewBox="0 0 260 240" role="img" aria-label="四軸無人機即時轉速與姿態動畫">
+                    <rect width="260" height="240" rx="12" fill="#0f172a" />
+                    <g id="live-quad-frame" class="quad-frame-anim" data-state="hover">
+                      <!-- Arms -->
+                      <line x1="75" y1="70" x2="185" y2="180" stroke="#475569" stroke-width="10" stroke-linecap="round" />
+                      <line x1="185" y1="70" x2="75" y2="180" stroke="#475569" stroke-width="10" stroke-linecap="round" />
+                      <!-- Nose cone -->
+                      <polygon points="130,32 118,52 142,52" fill="#22c55e" />
+                      <text x="130" y="26" text-anchor="middle" fill="#4ade80" font-size="10" font-weight="700">機頭 Front</text>
+                      <!-- M1 Front-Left (CW) -->
+                      <g class="motor-node" id="motor-m1">
+                        <circle cx="75" cy="70" r="34" fill="#1e293b" stroke="#38bdf8" stroke-width="3" />
+                        <g class="live-prop prop-cw" id="prop-m1" style="transform-origin: 75px 70px;">
+                          <line x1="48" y1="70" x2="102" y2="70" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+                          <line x1="75" y1="43" x2="75" y2="97" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+                        </g>
+                        <circle cx="75" cy="70" r="6" fill="#0284c7" />
+                        <text x="75" y="116" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">M1 (CW↻)</text>
+                      </g>
+                      <!-- M2 Front-Right (CCW) -->
+                      <g class="motor-node" id="motor-m2">
+                        <circle cx="185" cy="70" r="34" fill="#1e293b" stroke="#fb923c" stroke-width="3" />
+                        <g class="live-prop prop-ccw" id="prop-m2" style="transform-origin: 185px 70px;">
+                          <line x1="158" y1="70" x2="212" y2="70" stroke="#fb923c" stroke-width="4" stroke-linecap="round" />
+                          <line x1="185" y1="43" x2="185" y2="97" stroke="#fb923c" stroke-width="4" stroke-linecap="round" />
+                        </g>
+                        <circle cx="185" cy="70" r="6" fill="#ea580c" />
+                        <text x="185" y="116" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">M2 (CCW↺)</text>
+                      </g>
+                      <!-- M4 Rear-Left (CCW) -->
+                      <g class="motor-node" id="motor-m4">
+                        <circle cx="75" cy="180" r="34" fill="#1e293b" stroke="#fb923c" stroke-width="3" />
+                        <g class="live-prop prop-ccw" id="prop-m4" style="transform-origin: 75px 180px;">
+                          <line x1="48" y1="180" x2="102" y2="180" stroke="#fb923c" stroke-width="4" stroke-linecap="round" />
+                          <line x1="75" y1="153" x2="75" y2="207" stroke="#fb923c" stroke-width="4" stroke-linecap="round" />
+                        </g>
+                        <circle cx="75" cy="180" r="6" fill="#ea580c" />
+                        <text x="75" y="226" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">M4 (CCW↺)</text>
+                      </g>
+                      <!-- M3 Rear-Right (CW) -->
+                      <g class="motor-node" id="motor-m3">
+                        <circle cx="185" cy="180" r="34" fill="#1e293b" stroke="#38bdf8" stroke-width="3" />
+                        <g class="live-prop prop-cw" id="prop-m3" style="transform-origin: 185px 180px;">
+                          <line x1="158" y1="180" x2="212" y2="180" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+                          <line x1="185" y1="153" x2="185" y2="207" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+                        </g>
+                        <circle cx="185" cy="180" r="6" fill="#0284c7" />
+                        <text x="185" y="226" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">M3 (CW↻)</text>
+                      </g>
+                      <!-- Center Fuselage -->
+                      <rect x="108" y="88" width="44" height="74" rx="16" fill="#334155" stroke="#cbd5e1" stroke-width="2" />
+                      <circle cx="130" cy="108" r="6" fill="#38bdf8" />
+                      <text x="130" y="136" text-anchor="middle" fill="#f8fafc" font-size="9" font-weight="700">NEO</text>
+                    </g>
+                  </svg>
+                </div>
+                <div class="rotor-telemetry">
+                  <div class="rpm-bars">
+                    <div class="rpm-row">
+                      <div class="rpm-label"><span>M1 左前 (順時針 CW)</span><strong id="rpm-val-m1">60%</strong></div>
+                      <div class="bar-track"><div class="bar-fill bar-ctrl" id="rpm-bar-m1" style="inline-size: 60%"></div></div>
+                    </div>
+                    <div class="rpm-row">
+                      <div class="rpm-label"><span>M2 右前 (逆時針 CCW)</span><strong id="rpm-val-m2">60%</strong></div>
+                      <div class="bar-track"><div class="bar-fill bar-app" id="rpm-bar-m2" style="inline-size: 60%"></div></div>
+                    </div>
+                    <div class="rpm-row">
+                      <div class="rpm-label"><span>M3 右後 (順時針 CW)</span><strong id="rpm-val-m3">60%</strong></div>
+                      <div class="bar-track"><div class="bar-fill bar-ctrl" id="rpm-bar-m3" style="inline-size: 60%"></div></div>
+                    </div>
+                    <div class="rpm-row">
+                      <div class="rpm-label"><span>M4 左後 (逆時針 CCW)</span><strong id="rpm-val-m4">60%</strong></div>
+                      <div class="bar-track"><div class="bar-fill bar-app" id="rpm-bar-m4" style="inline-size: 60%"></div></div>
+                    </div>
+                  </div>
+                  <p id="maneuver-explain" class="maneuver-explain" aria-live="polite">
+                    <strong>🟢 穩定懸停：</strong>4 顆馬達均維持 60% 轉速，總升力等於機身重量（135g），且 M1+M3 順時針反扭力與 M2+M4 逆時針反扭力完全抵消。
+                  </p>
+                </div>
+              </div>
+            </div>
 
             <h4>2. 室內無 GPS 的三大感測器 (Sensors)</h4>
             <div class="concept-cards">
@@ -254,9 +363,106 @@
         <span aria-hidden="true">✍️</span>
         <div>
           <strong>每週課堂實作闖關 ＆ 課後作業系統：</strong>
-          請選擇週次、勾選當堂完成的實作任務並填寫課後作業（系統會自動暫存於瀏覽器），完成後可一鍵複製或列印繳交給老師！
+          請先透過下方<strong>「互動實作演練台」</strong>動手完成模擬操作，再勾選當堂實作任務並填寫課後作業（系統自動暫存於瀏覽器），完成後可一鍵複製或列印繳交！
         </div>
       </div>
+
+      <!-- 學生互動實作演練台：起飛前 SOP 與掌上起降動畫闖關 -->
+      <article class="sop-practice-card" aria-labelledby="sop-practice-title">
+        <div class="sop-practice-header">
+          <div>
+            <h3 id="sop-practice-title">🛠️ 學生動手實作演練：DJI Neo 安全點檢 ＆ 掌上起降 SOP 動畫闖關</h3>
+            <p class="lab-desc">實飛真機前，請依序點擊下方 4 個實作步驟按鈕，觀察右側無人機的動態變化並完成安全認證：</p>
+          </div>
+          <span id="sop-progress-badge" class="sim-step-badge">進度：0 / 4 完成</span>
+        </div>
+
+        <div class="sop-practice-grid">
+          <div class="sop-steps-col" role="group" aria-label="起飛與補電實作步驟">
+            <button type="button" class="sop-step-btn" data-sop-step="0">
+              <span class="sop-step-num">Step 1</span>
+              <span><strong>卸下 [1] 雲台保護罩</strong><small>點擊取下機頭透明保護蓋，釋放 AI 鏡頭</small></span>
+            </button>
+            <button type="button" class="sop-step-btn" data-sop-step="1">
+              <span class="sop-step-num">Step 2</span>
+              <span><strong>檢視 [6] 底部光流感測器</strong><small>確認下視鏡頭乾淨、地面具紋理不反光</small></span>
+            </button>
+            <button type="button" class="sop-step-btn" data-sop-step="2">
+              <span class="sop-step-num">Step 3</span>
+              <span><strong>長按 [2] 模式鍵 ➔ 五指平伸掌上起飛</strong><small>手掌如平底鍋平舉，觀察四槳旋轉升空</small></span>
+            </button>
+            <button type="button" class="sop-step-btn" data-sop-step="3">
+              <span class="sop-step-num">Step 4</span>
+              <span><strong>降落關機 ➔ 插入機尾 [9] USB-C 快充</strong><small>接上中央 PD 快充線，觀察電量燈號遞增動畫</small></span>
+            </button>
+            <div class="sop-actions-row">
+              <button type="button" id="sop-sync-hw-btn" class="btn btn-primary" disabled>
+                ✅ 已完成演練！一鍵同步勾選下方實作檢核表
+              </button>
+              <button type="button" id="sop-reset-btn" class="btn btn-secondary">重設演練</button>
+            </div>
+          </div>
+
+          <div class="sop-stage-col">
+            <svg id="sop-Interactive-svg" viewBox="0 0 360 230" role="img" aria-label="DJI Neo 實作點檢與掌上起降互動動畫圖">
+              <rect width="360" height="230" rx="12" fill="#0f172a" />
+              <!-- 地面紋理區 -->
+              <rect x="30" y="195" width="300" height="16" rx="4" fill="#1e293b" stroke="#334155" />
+              <g id="sop-floor-texture" opacity="0.25">
+                <line x1="60" y1="195" x2="60" y2="211" stroke="#4ade80" stroke-width="2" />
+                <line x1="110" y1="195" x2="110" y2="211" stroke="#4ade80" stroke-width="2" />
+                <line x1="160" y1="195" x2="160" y2="211" stroke="#4ade80" stroke-width="2" />
+                <line x1="210" y1="195" x2="210" y2="211" stroke="#4ade80" stroke-width="2" />
+                <line x1="260" y1="195" x2="260" y2="211" stroke="#4ade80" stroke-width="2" />
+                <line x1="300" y1="195" x2="300" y2="211" stroke="#4ade80" stroke-width="2" />
+              </g>
+              <!-- 光流掃描錐 -->
+              <polygon id="sop-flow-cone" points="180,130 120,195 240,195" fill="rgba(245, 158, 11, 0.22)" stroke="#f59e0b" stroke-dasharray="4,4" opacity="0" />
+              <!-- 平伸手掌圖示 -->
+              <g id="sop-flat-palm" opacity="0" transform="translate(0, 10)">
+                <rect x="115" y="152" width="130" height="10" rx="5" fill="#fcd34d" />
+                <text x="180" y="176" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="700">🖐️ 五指併攏完全平伸托住</text>
+              </g>
+              <!-- USB-C PD 快充線動畫 -->
+              <g id="sop-usb-cable" opacity="0">
+                <path d="M 330 122 L 252 122" stroke="#22c55e" stroke-width="5" stroke-linecap="round" />
+                <rect x="242" y="116" width="14" height="12" rx="3" fill="#4ade80" />
+                <text x="295" y="108" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="700">⚡ PD 快充輸入中</text>
+              </g>
+              <!-- 無人機本體群組 -->
+              <g id="sop-drone-group" class="sop-drone-group">
+                <!-- 左右涵道保護罩 -->
+                <rect x="95" y="108" width="58" height="18" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="2" />
+                <rect x="207" y="108" width="58" height="18" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="2" />
+                <!-- 旋轉槳葉 -->
+                <line id="sop-blade-l" class="sop-blade" x1="104" y1="104" x2="144" y2="104" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" />
+                <line id="sop-blade-r" class="sop-blade" x1="216" y1="104" x2="256" y2="104" stroke="#fb923c" stroke-width="3.5" stroke-linecap="round" />
+                <!-- 中央機身 -->
+                <rect x="138" y="98" width="84" height="34" rx="12" fill="#475569" stroke="#e2e8f0" stroke-width="2" />
+                <!-- [1] 前方雲台鏡頭 -->
+                <circle cx="144" cy="115" r="7" fill="#22c55e" stroke="#fff" stroke-width="1.5" />
+                <!-- [1] 透明雲台保護罩 (Step 1 卸下動畫) -->
+                <g id="sop-gimbal-cover" class="sop-gimbal-cover">
+                  <rect x="128" y="102" width="24" height="26" rx="6" fill="rgba(56, 189, 248, 0.35)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,2" />
+                  <text x="140" y="95" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">[1] 雲台罩</text>
+                </g>
+                <!-- [3] 4顆電量指示燈 -->
+                <circle class="sop-led" cx="166" cy="115" r="3" fill="#4ade80" />
+                <circle class="sop-led" cx="176" cy="115" r="3" fill="#4ade80" />
+                <circle class="sop-led" cx="186" cy="115" r="3" fill="#334155" />
+                <circle class="sop-led" cx="196" cy="115" r="3" fill="#334155" />
+                <!-- [6] 底部光流鏡頭 -->
+                <circle id="sop-bottom-sensor" cx="180" cy="132" r="5" fill="#f59e0b" stroke="#fff" stroke-width="1.2" />
+                <!-- [9] 機尾 USB-C 埠 -->
+                <rect id="sop-usbc-port" x="218" y="111" width="6" height="10" rx="2" fill="#22c55e" />
+              </g>
+              <text id="sop-stage-caption" x="180" y="32" text-anchor="middle" fill="#f8fafc" font-size="12.5" font-weight="700">
+                👆 請點擊左側 Step 1 開始起飛前安全實作！
+              </text>
+            </svg>
+          </div>
+        </div>
+      </article>
 
       <form id="homework-form" action="#panel-homework" method="POST" class="hw-form" novalidate>
         <fieldset class="hw-fieldset">
@@ -342,11 +548,11 @@
           </div>
           <p class="week-focus"><strong>資訊核心：</strong>IMU、氣壓計、底部光流定位 (Optical Flow)、邊緣 AI 辨識極限</p>
           <ul class="timeline-list">
-            <li><span>00–25m</span> 四角色分配（每 10 分鐘輪替）＋ 多語安全手勢練習 ＋ 構造解剖</li>
-            <li><span>25–38m</span> <strong>實飛 1：</strong>無遙控掌上起降 ＋ Follow / Dronie AI 模式初體驗</li>
-            <li><span>38–63m</span> <strong>充電 25m：</strong>下課補電 ＋ 設計 3 項 AI 追蹤極限變因（速度/遮擋/暗處）</li>
-            <li><span>63–78m</span> <strong>實飛 2：</strong>執行 AI 極限測試並記錄跟丟條件</li>
-            <li><span>78–100m</span> 數據彙整：為何光流怕全黑或純白反光地面？</li>
+            <li><span>00–25m</span><div>四角色分配（每 10 分鐘輪替）＋ 多語安全手勢練習 ＋ 構造解剖</div></li>
+            <li><span>25–38m</span><div><strong>實飛 1：</strong>無遙控掌上起降 ＋ Follow / Dronie AI 模式初體驗</div></li>
+            <li><span>38–63m</span><div><strong>充電 25m：</strong>下課補電 ＋ 設計 3 項 AI 追蹤極限變因（速度/遮擋/暗處）</div></li>
+            <li><span>63–78m</span><div><strong>實飛 2：</strong>執行 AI 極限測試並記錄跟丟條件</div></li>
+            <li><span>78–100m</span><div>數據彙整：為何光流怕全黑或純白反光地面？</div></li>
           </ul>
           <div class="week-deliverables">
             <p><strong>🛠️ 當堂實作：</strong>(1) 卸下 <code>[1] 雲台罩</code> 與全員掌上起降 1 次；(2) 測試 3 項 AI 追蹤極限變因；(3) <code>[9] USB-C</code> 中場補電。</p>
@@ -361,11 +567,11 @@
           </div>
           <p class="week-focus"><strong>資訊核心：</strong>2.4GHz vs 5.8GHz Wi-Fi 干擾、空間四軸變數、虛擬碼與 Debug</p>
           <ul class="timeline-list">
-            <li><span>00–25m</span> Wi-Fi SSID 防連錯配對 ＋ Mode 2 四動作（Throttle/Yaw/Pitch/Roll）</li>
-            <li><span>25–38m</span> <strong>實飛 1：</strong>手機虛擬搖桿懸停 10 秒 ＋ 原地升降與 90° 轉向手感練習</li>
-            <li><span>38–65m</span> <strong>充電 25m：</strong>編寫正方形巡航虛擬碼（含 <code>REPEAT 4</code> 與 <code>IF</code> 修正）</li>
-            <li><span>65–82m</span> <strong>實飛 2：</strong>演算法驗證、參數 Debug 修改秒數 ＋ 低空穿框</li>
-            <li><span>82–100m</span> 討論觸控介面無置中回饋造成的軌跡誤差</li>
+            <li><span>00–25m</span><div>Wi-Fi SSID 防連錯配對 ＋ Mode 2 四動作（Throttle/Yaw/Pitch/Roll）</div></li>
+            <li><span>25–38m</span><div><strong>實飛 1：</strong>手機虛擬搖桿懸停 10 秒 ＋ 原地升降與 90° 轉向手感練習</div></li>
+            <li><span>38–65m</span><div><strong>充電 25m：</strong>編寫正方形巡航虛擬碼（含 <code>REPEAT 4</code> 與 <code>IF</code> 修正）</div></li>
+            <li><span>65–82m</span><div><strong>實飛 2：</strong>演算法驗證、參數 Debug 修改秒數 ＋ 低空穿框</div></li>
+            <li><span>82–100m</span><div>討論觸控介面無置中回饋造成的軌跡誤差</div></li>
           </ul>
           <div class="week-deliverables">
             <p><strong>🛠️ 當堂實作：</strong>(1) 正確配對專屬編號 Wi-Fi；(2) 依正方形虛擬碼實飛 2 次並 Debug 秒數；(3) 低空穿越 80cm 門框。</p>
@@ -380,11 +586,11 @@
           </div>
           <p class="week-focus"><strong>資訊核心：</strong>觸控虛擬搖桿 vs 實體遙控手柄延遲比較、系統整合測試</p>
           <ul class="timeline-list">
-            <li><span>00–20m</span> HCI 對照實驗規則說明（2 台手柄預綁定 <code>#01/#02</code> 人換機不換）</li>
-            <li><span>20–45m</span> <strong>實飛 1：</strong>A/B 雙站輪替飛「S 型繞標 + 降落」，記錄秒數與出界數</li>
-            <li><span>45–72m</span> <strong>充電＋分析：</strong>計算全班平均值 ＋ 搭建複合賽道（呼拉圈/三角錐）</li>
-            <li><span>72–88m</span> <strong>實飛 2：</strong>賽道壓力測試與結構微調</li>
-            <li><span>88–100m</span> 公布第 4 週跨文化挑戰賽規則與電池全面充飽</li>
+            <li><span>00–20m</span><div>HCI 對照實驗規則說明（2 台手柄預綁定 <code>#01/#02</code> 人換機不換）</div></li>
+            <li><span>20–45m</span><div><strong>實飛 1：</strong>A/B 雙站輪替飛「S 型繞標 + 降落」，記錄秒數與出界數</div></li>
+            <li><span>45–72m</span><div><strong>充電＋分析：</strong>計算全班平均值 ＋ 搭建複合賽道（呼拉圈/三角錐）</div></li>
+            <li><span>72–88m</span><div><strong>實飛 2：</strong>賽道壓力測試與結構微調</div></li>
+            <li><span>88–100m</span><div>公布第 4 週跨文化挑戰賽規則與電池全面充飽</div></li>
           </ul>
           <div class="week-deliverables">
             <p><strong>🛠️ 當堂實作：</strong>(1) 完成手機 vs. 實體手柄 S 型繞標計時與落點誤差測量；(2) 繪製草圖並搭建安全障礙賽道試飛。</p>
@@ -399,11 +605,11 @@
           </div>
           <p class="week-focus"><strong>資訊核心：</strong>多階段任務整合、數位影像偵察、AI 與農業/防災產業連結</p>
           <ul class="timeline-list">
-            <li><span>00–15m</span> 檢核與雙軌遙控手柄 PK 賽制說明（7 組分 4 輪極省電完成）</li>
-            <li><span>15–40m</span> <strong>正式賽：</strong>雙門穿越 ➔ 俯拍台/越/印/緬多語密碼牌 ➔ 同心圓降落</li>
-            <li><span>40–70m</span> 下課休息 ＋ 匯出 DJI Fly App 偵察影像 ＋ 製作 2 分鐘短講</li>
-            <li><span>70–90m</span> 各組上台展示影像與 Debug 歷程（鼓勵母語問候互動）</li>
-            <li><span>90–100m</span> 產業應用連結（台灣 × 東南亞智慧農業/救災）＋ 頒獎</li>
+            <li><span>00–15m</span><div>檢核與雙軌遙控手柄 PK 賽制說明（7 組分 4 輪極省電完成）</div></li>
+            <li><span>15–40m</span><div><strong>正式賽：</strong>雙門穿越 ➔ 俯拍台/越/印/緬多語密碼牌 ➔ 同心圓降落</div></li>
+            <li><span>40–70m</span><div>下課休息 ＋ 匯出 DJI Fly App 偵察影像 ＋ 製作 2 分鐘短講</div></li>
+            <li><span>70–90m</span><div>各組上台展示影像與 Debug 歷程（鼓勵母語問候互動）</div></li>
+            <li><span>90–100m</span><div>產業應用連結（台灣 × 東南亞智慧農業/救災）＋ 頒獎</div></li>
           </ul>
           <div class="week-deliverables">
             <p><strong>🛠️ 當堂實作：</strong>(1) 完成雙軌 PK 三階段接力賽；(2) 匯出清晰多語密碼牌偵察照；(3) 完成 2 分鐘團隊 Debug 成果發表。</p>
@@ -571,7 +777,18 @@
               <input type="checkbox" id="enable-fix" />
               <label for="enable-fix">啟用 <code>IF 偏航 THEN 微調修正</code> 演算法補償</label>
             </div>
+            <div class="sim-action-row">
+              <button type="button" id="sim-play-btn" class="btn btn-primary">▶️ 播放動態飛行模擬</button>
+              <span id="sim-step-badge" class="sim-step-badge">待命：可拖曳參數或點擊播放</span>
+            </div>
           </form>
+
+          <div class="algo-trace" id="algo-trace" aria-label="飛行演算法虛擬碼即時追蹤">
+            <div class="trace-line" data-step="loop"><code>REPEAT 4 TIMES (迴圈執行第 <span id="trace-iter">1</span> / 4 邊):</code></div>
+            <div class="trace-line" data-step="move"><code>  1. Pitch_Forward(t = <span id="trace-sec">2.0</span>s) // 直線推進</code></div>
+            <div class="trace-line" data-step="turn"><code>  2. Yaw_Right(90° + 氣流誤差 <span id="trace-drift">12</span>°)</code></div>
+            <div class="trace-line" data-step="fix"><code>  3. IF (IMU_偏航 &gt; 5°) THEN 逆向微調補償()</code></div>
+          </div>
 
           <div class="sim-stage">
             <svg id="flight-svg" viewBox="0 0 320 240" role="img" aria-label="無人機正方形路徑演算法模擬圖">
@@ -586,6 +803,18 @@
               <circle cx="80" cy="180" r="6" fill="#16a34a" />
               <text x="80" y="200" text-anchor="middle" font-size="11" fill="currentColor">起點/目標點</text>
               <circle id="end-dot" cx="80" cy="180" r="5" fill="#dc2626" />
+              <!-- 動態飛行無人機圖示 -->
+              <g id="sim-drone" transform="translate(80, 180) rotate(0)">
+                <circle id="sim-fix-ring" cx="0" cy="0" r="14" fill="none" stroke="#22c55e" stroke-width="2.5" opacity="0" />
+                <line x1="-8" y1="-8" x2="8" y2="8" stroke="#334155" stroke-width="2.5" />
+                <line x1="8" y1="-8" x2="-8" y2="8" stroke="#334155" stroke-width="2.5" />
+                <circle class="sim-rotor" cx="-8" cy="-8" r="4.5" fill="#38bdf8" fill-opacity="0.75" stroke="#0284c7" stroke-width="1.2" />
+                <circle class="sim-rotor" cx="8" cy="-8" r="4.5" fill="#fb923c" fill-opacity="0.75" stroke="#ea580c" stroke-width="1.2" />
+                <circle class="sim-rotor" cx="-8" cy="8" r="4.5" fill="#fb923c" fill-opacity="0.75" stroke="#ea580c" stroke-width="1.2" />
+                <circle class="sim-rotor" cx="8" cy="8" r="4.5" fill="#38bdf8" fill-opacity="0.75" stroke="#0284c7" stroke-width="1.2" />
+                <rect x="-4" y="-5" width="8" height="10" rx="3" fill="#0f172a" stroke="#f8fafc" stroke-width="1.2" />
+                <polygon points="0,-12 -3.5,-6 3.5,-6" fill="#22c55e" />
+              </g>
             </svg>
             <p id="sim-status" class="sim-status" aria-live="polite"></p>
           </div>
@@ -618,6 +847,173 @@
               <div class="bar-track"><div class="bar-fill bar-ctrl" id="ctrl-bar" style="inline-size: 48%"></div></div>
             </div>
             <p class="hci-summary" id="hci-summary">實體遙控手柄平均快了 <strong>39.2%</strong>，顯示實體觸覺回饋與低延遲協定對精準操控有顯著幫助。</p>
+          </div>
+        </article>
+
+        <!-- 互動工具 3 (學生親自動手實作 1): 積木式飛行演算法編程闖關 -->
+        <article class="lab-card">
+          <h3>🧩 學生動手實作 1：無人機演算法編程闖關（Block Coding）</h3>
+          <p class="lab-desc">
+            請自己組合飛行指令積木，引導無人機從 <strong>🛫 起點 (0,3)</strong> 避開 <strong>⛔ 冷氣出風口與細繩障礙</strong>，飛抵 <strong>🇲🇲 密碼牌 (2,0)</strong> 執行拍照，最後停在 <strong>🎯 終點 (3,0)</strong>！
+          </p>
+
+          <div class="coding-palette" role="group" aria-label="新增飛行指令積木">
+            <button type="button" class="btn btn-secondary code-add-btn" data-cmd="FWD">⬆️ 前進 1 格</button>
+            <button type="button" class="btn btn-secondary code-add-btn" data-cmd="LEFT">↩️ 左轉 90°</button>
+            <button type="button" class="btn btn-secondary code-add-btn" data-cmd="RIGHT">↪️ 右轉 90°</button>
+            <button type="button" class="btn btn-secondary code-add-btn" data-cmd="SNAP">📸 懸停拍密碼</button>
+          </div>
+
+          <div class="coding-queue-box">
+            <div class="coding-queue-header">
+              <strong>📜 我的飛行程式序列（點擊積木可刪除單步）：</strong>
+              <div class="coding-queue-actions">
+                <button type="button" id="code-sample-btn" class="chip">💡 載入範例解答</button>
+                <button type="button" id="code-clear-btn" class="chip">🗑️ 清空</button>
+              </div>
+            </div>
+            <div id="code-blocks-list" class="code-blocks-list" aria-live="polite"></div>
+          </div>
+
+          <div class="sim-action-row" style="margin-block-end: 0.75rem;">
+            <button type="button" id="code-run-btn" class="btn btn-primary">🚀 執行我的演算法</button>
+            <span id="code-run-status" class="sim-step-badge">等待執行指令...</span>
+          </div>
+
+          <div class="sim-stage">
+            <svg id="coding-grid-svg" viewBox="0 0 280 240" role="img" aria-label="4x4 網格演算法避障闖關地圖">
+              <rect width="280" height="240" rx="10" fill="#0f172a" />
+              <!-- 4x4 Grid (cell size 52x52, offset x=36, y=16) -->
+              <g stroke="#334155" stroke-width="1.5" fill="#1e293b">
+                <!-- Row 0 -->
+                <rect x="36" y="16" width="52" height="52" rx="6" />
+                <rect x="88" y="16" width="52" height="52" rx="6" />
+                <rect x="140" y="16" width="52" height="52" rx="6" fill="rgba(13, 148, 136, 0.25)" stroke="#2dd4bf" />
+                <rect x="192" y="16" width="52" height="52" rx="6" fill="rgba(22, 163, 74, 0.25)" stroke="#4ade80" />
+                <!-- Row 1 -->
+                <rect x="36" y="68" width="52" height="52" rx="6" />
+                <rect x="88" y="68" width="52" height="52" rx="6" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" />
+                <rect x="140" y="68" width="52" height="52" rx="6" fill="rgba(239, 68, 68, 0.22)" stroke="#ef4444" />
+                <rect x="192" y="68" width="52" height="52" rx="6" />
+                <!-- Row 2 -->
+                <rect x="36" y="120" width="52" height="52" rx="6" />
+                <rect x="88" y="120" width="52" height="52" rx="6" fill="rgba(239, 68, 68, 0.22)" stroke="#ef4444" />
+                <rect x="140" y="120" width="52" height="52" rx="6" />
+                <rect x="192" y="120" width="52" height="52" rx="6" />
+                <!-- Row 3 -->
+                <rect x="36" y="172" width="52" height="52" rx="6" fill="rgba(2, 132, 199, 0.25)" stroke="#38bdf8" />
+                <rect x="88" y="172" width="52" height="52" rx="6" />
+                <rect x="140" y="172" width="52" height="52" rx="6" />
+                <rect x="192" y="172" width="52" height="52" rx="6" />
+              </g>
+              <!-- 地圖標記 -->
+              <text x="62" y="202" text-anchor="middle" font-size="11" fill="#38bdf8" font-weight="700">🛫 起點</text>
+              <text x="114" y="98" text-anchor="middle" font-size="10" fill="#7dd3fc" font-weight="700">⛩️ 80cm門</text>
+              <text x="114" y="150" text-anchor="middle" font-size="10" fill="#fca5a5" font-weight="700">⛔ 冷氣風</text>
+              <text x="166" y="98" text-anchor="middle" font-size="10" fill="#fca5a5" font-weight="700">⛔ 細繩區</text>
+              <text x="166" y="45" text-anchor="middle" font-size="10" fill="#5eead4" font-weight="700">🇲🇲 密碼牌</text>
+              <text x="218" y="45" text-anchor="middle" font-size="10" fill="#86efac" font-weight="700">🎯 終點</text>
+
+              <!-- 拍照閃光圈 -->
+              <circle id="coding-flash-ring" cx="166" cy="42" r="22" fill="rgba(250, 204, 21, 0.45)" stroke="#facc15" stroke-width="3" opacity="0" />
+
+              <!-- 學生編程無人機游標 -->
+              <g id="coding-drone" class="coding-drone" transform="translate(62, 198) rotate(0)">
+                <circle cx="-10" cy="-10" r="5" fill="#38bdf8" opacity="0.8" />
+                <circle cx="10" cy="-10" r="5" fill="#fb923c" opacity="0.8" />
+                <circle cx="-10" cy="10" r="5" fill="#fb923c" opacity="0.8" />
+                <circle cx="10" cy="10" r="5" fill="#38bdf8" opacity="0.8" />
+                <rect x="-6" y="-8" width="12" height="16" rx="4" fill="#f8fafc" stroke="#0284c7" stroke-width="2" />
+                <polygon points="0,-16 -5,-8 5,-8" fill="#22c55e" />
+              </g>
+            </svg>
+          </div>
+        </article>
+
+        <!-- 互動工具 4 (學生親自動手實作 2): Mode 2 雙搖桿模擬飛行訓練場 -->
+        <article class="lab-card">
+          <h3>🕹️ 學生動手實作 2：Mode 2 雙搖桿實戰訓練機（支援鍵盤 WASD + 方向鍵）</h3>
+          <p class="lab-desc">
+            親手操作左搖桿（升降／轉向）與右搖桿（前後／左右平移），體驗<strong>「📱 手機無回中漂移」</strong>與<strong>「🎮 實體手柄自動置中煞車」</strong>的操控差異，完成穿門與降落挑戰！
+          </p>
+
+          <div class="trainer-mode-bar" role="group" aria-label="切換操控介面模式">
+            <button type="button" class="chip active" data-stick-mode="controller">🎮 實體手柄模式（放手自動煞車）</button>
+            <button type="button" class="chip" data-stick-mode="phone">📱 手機觸控模式（慣性滑行較難停）</button>
+            <button type="button" id="trainer-reset-btn" class="chip">🔄 重置飛機位置</button>
+          </div>
+
+          <div class="sim-stage">
+            <div class="trainer-hud">
+              <span>高度：<strong id="hud-alt">0.0m</strong> (目標 1.0–1.4m)</span>
+              <span>計時：<strong id="hud-time">0.0s</strong></span>
+              <span id="hud-mission">任務 1：推左搖桿⬆️起飛至 1.0m 以上</span>
+            </div>
+            <svg id="trainer-svg" viewBox="0 0 320 190" role="img" aria-label="Mode 2 雙搖桿即時飛行訓練場">
+              <rect width="320" height="190" rx="8" fill="#0f172a" />
+              <!-- 賽道背景線 -->
+              <path d="M 45 150 C 110 150, 110 55, 165 55 C 220 55, 220 135, 275 95" fill="none" stroke="#334155" stroke-width="16" stroke-linecap="round" />
+              <!-- 起飛坪 -->
+              <circle cx="45" cy="150" r="16" fill="rgba(2, 132, 199, 0.25)" stroke="#38bdf8" stroke-width="2" />
+              <text x="45" y="154" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="700">起飛點</text>
+              <!-- 檢查點 1: 80cm 門框 -->
+              <g id="cp-gate">
+                <rect x="148" y="38" width="34" height="34" rx="6" fill="rgba(245, 158, 11, 0.18)" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2" />
+                <text x="165" y="32" text-anchor="middle" fill="#fbbf24" font-size="9.5" font-weight="700">① 穿門區</text>
+              </g>
+              <!-- 檢查點 2: 同心圓降落區 -->
+              <g id="cp-pad">
+                <circle cx="275" cy="95" r="20" fill="rgba(34, 197, 94, 0.18)" stroke="#22c55e" stroke-width="2" />
+                <circle cx="275" cy="95" r="8" fill="none" stroke="#4ade80" stroke-width="1.5" />
+                <text x="275" y="128" text-anchor="middle" fill="#4ade80" font-size="9.5" font-weight="700">② 停機坪</text>
+              </g>
+              <!-- 玩家操控無人機 -->
+              <g id="trainer-drone" transform="translate(45, 150) rotate(0) scale(1)">
+                <circle cx="-8" cy="-8" r="4.5" fill="#38bdf8" />
+                <circle cx="8" cy="-8" r="4.5" fill="#fb923c" />
+                <circle cx="-8" cy="8" r="4.5" fill="#fb923c" />
+                <circle cx="8" cy="8" r="4.5" fill="#38bdf8" />
+                <rect x="-5" y="-6" width="10" height="12" rx="3" fill="#f8fafc" stroke="#0284c7" stroke-width="1.5" />
+                <polygon points="0,-13 -4,-6 4,-6" fill="#22c55e" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="dual-sticks-pad">
+            <div class="stick-pad-box" aria-label="左搖桿：油門升降與偏航旋轉">
+              <span class="stick-pad-title">🕹️ 左手 (W/S 升降・A/D 轉頭)</span>
+              <div class="dpad-grid">
+                <span></span>
+                <button type="button" class="dpad-btn" data-stick-act="thr-up">⬆️ 油門+</button>
+                <span></span>
+                <button type="button" class="dpad-btn" data-stick-act="yaw-l">↩️ 左轉</button>
+                <span class="dpad-center">Mode 2</span>
+                <button type="button" class="dpad-btn" data-stick-act="yaw-r">↪️ 右轉</button>
+                <span></span>
+                <button type="button" class="dpad-btn" data-stick-act="thr-down">⬇️ 油門-</button>
+                <span></span>
+              </div>
+            </div>
+
+            <div class="stick-pad-box" aria-label="右搖桿：俯仰前後與橫滾平移">
+              <span class="stick-pad-title">🕹️ 右手 (方向鍵：前後左右平移)</span>
+              <div class="dpad-grid">
+                <span></span>
+                <button type="button" class="dpad-btn" data-stick-act="pitch-f">⏩ 前進</button>
+                <span></span>
+                <button type="button" class="dpad-btn" data-stick-act="roll-l">⬅️ 左移</button>
+                <span class="dpad-center">自動置中</span>
+                <button type="button" class="dpad-btn" data-stick-act="roll-r">➡️ 右移</button>
+                <span></span>
+                <button type="button" class="dpad-btn" data-stick-act="pitch-b">⏪ 後退</button>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <div class="sim-action-row" style="margin-block-start: 0.65rem;">
+            <button type="button" id="trainer-record-btn" class="btn btn-secondary" disabled>
+              📥 將本次完賽秒數填入上方 HCI 計算機
+            </button>
           </div>
         </article>
       </div>
@@ -706,7 +1102,13 @@
       <h2 id="timer-dialog-title">⏱️ 課堂實作與快充計時器</h2>
       <button type="button" id="close-timer-btn" class="btn-icon" aria-label="關閉計時器">✕</button>
     </div>
-    <div class="timer-display" id="timer-display" aria-live="off">10:00</div>
+    <div class="timer-ring-wrap">
+      <svg class="timer-ring-svg" viewBox="0 0 160 160" aria-hidden="true">
+        <circle class="timer-ring-bg" cx="80" cy="80" r="68" fill="none" stroke-width="8" />
+        <circle class="timer-ring-progress" id="timer-ring-progress" cx="80" cy="80" r="68" fill="none" stroke-width="8" stroke-dasharray="427.26" stroke-dashoffset="0" />
+      </svg>
+      <div class="timer-display" id="timer-display" aria-live="off">10:00</div>
+    </div>
     <div class="timer-presets">
       <button type="button" class="btn btn-secondary preset-btn" data-seconds="600">🔄 10 分鐘換手</button>
       <button type="button" class="btn btn-secondary preset-btn" data-seconds="720">🚁 12 分鐘實飛</button>

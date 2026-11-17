@@ -13,6 +13,14 @@
       .ccw { stroke: #fb923c; fill: rgba(251, 146, 60, 0.12); stroke-width: 3; }
       .guard { stroke: #64748b; fill: none; stroke-width: 5; }
       .body { fill: #334155; stroke: #94a3b8; stroke-width: 2; }
+      .blade-cw { stroke: #38bdf8; stroke-width: 4; stroke-linecap: round; opacity: 0.45; transform-box: fill-box; transform-origin: center; }
+      .blade-ccw { stroke: #fb923c; stroke-width: 4; stroke-linecap: round; opacity: 0.45; transform-box: fill-box; transform-origin: center; }
+      @keyframes spin-cw { to { transform: rotate(1080deg); } }
+      @keyframes spin-ccw { to { transform: rotate(-1080deg); } }
+      @media (prefers-reduced-motion: no-preference) {
+        .blade-cw { animation: spin-cw 4s cubic-bezier(0.22, 0.61, 0.36, 1) 1; }
+        .blade-ccw { animation: spin-ccw 4s cubic-bezier(0.22, 0.61, 0.36, 1) 1; }
+      }
     </style>
     <marker id="arrow-cw" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
@@ -43,6 +51,10 @@
   <!-- Front-Left: CW -->
   <circle cx="165" cy="165" r="56" class="guard"/>
   <circle cx="165" cy="165" r="46" class="cw"/>
+  <g class="blade-cw">
+    <line x1="129" y1="165" x2="201" y2="165"/>
+    <line x1="165" y1="129" x2="165" y2="201"/>
+  </g>
   <path d="M 135 145 A 36 36 0 1 1 130 175" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-cw)"/>
   <text x="165" y="162" text-anchor="middle" class="label" fill="#38bdf8">M1 左前</text>
   <text x="165" y="180" text-anchor="middle" class="small" fill="#38bdf8">順時針 CW ↻</text>
@@ -50,6 +62,10 @@
   <!-- Front-Right: CCW -->
   <circle cx="335" cy="165" r="56" class="guard"/>
   <circle cx="335" cy="165" r="46" class="ccw"/>
+  <g class="blade-ccw">
+    <line x1="299" y1="165" x2="371" y2="165"/>
+    <line x1="335" y1="129" x2="335" y2="201"/>
+  </g>
   <path d="M 365 145 A 36 36 0 1 0 370 175" fill="none" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow-ccw)"/>
   <text x="335" y="162" text-anchor="middle" class="label" fill="#fb923c">M2 右前</text>
   <text x="335" y="180" text-anchor="middle" class="small" fill="#fb923c">逆時針 CCW ↺</text>
@@ -57,6 +73,10 @@
   <!-- Rear-Left: CCW -->
   <circle cx="165" cy="315" r="56" class="guard"/>
   <circle cx="165" cy="315" r="46" class="ccw"/>
+  <g class="blade-ccw">
+    <line x1="129" y1="315" x2="201" y2="315"/>
+    <line x1="165" y1="279" x2="165" y2="351"/>
+  </g>
   <path d="M 195 295 A 36 36 0 1 0 200 325" fill="none" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow-ccw)"/>
   <text x="165" y="312" text-anchor="middle" class="label" fill="#fb923c">M4 左後</text>
   <text x="165" y="330" text-anchor="middle" class="small" fill="#fb923c">逆時針 CCW ↺</text>
@@ -64,6 +84,10 @@
   <!-- Rear-Right: CW -->
   <circle cx="335" cy="315" r="56" class="guard"/>
   <circle cx="335" cy="315" r="46" class="cw"/>
+  <g class="blade-cw">
+    <line x1="299" y1="315" x2="371" y2="315"/>
+    <line x1="335" y1="279" x2="335" y2="351"/>
+  </g>
   <path d="M 305 295 A 36 36 0 1 1 300 325" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-cw)"/>
   <text x="335" y="312" text-anchor="middle" class="label" fill="#38bdf8">M3 右後</text>
   <text x="335" y="330" text-anchor="middle" class="small" fill="#38bdf8">順時針 CW ↻</text>

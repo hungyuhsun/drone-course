@@ -9,6 +9,18 @@
       .subtitle { fill: #94a3b8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 13px; }
       .label { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 14px; font-weight: 700; }
       .small { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
+      @keyframes hover-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+      }
+      @keyframes scan-pulse {
+        0%, 100% { opacity: 1; stroke-dashoffset: 0; }
+        50% { opacity: 0.55; stroke-dashoffset: -18; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .drone-hover-group { animation: hover-float 2s ease-in-out 2; }
+        .sensor-cone { animation: scan-pulse 2s linear 2; }
+      }
     </style>
   </defs>
 
@@ -21,33 +33,35 @@
   <rect x="30" y="85" width="740" height="310" class="panel"/>
 
   <!-- Drone Side Profile -->
-  <!-- Left Rotor Guard -->
-  <rect x="190" y="148" width="90" height="24" rx="8" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
-  <!-- Right Rotor Guard -->
-  <rect x="360" y="148" width="90" height="24" rx="8" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
-  <!-- Center Body -->
-  <rect x="255" y="135" width="130" height="48" rx="16" fill="#475569" stroke="#cbd5e1" stroke-width="2"/>
+  <g class="drone-hover-group">
+    <!-- Left Rotor Guard -->
+    <rect x="190" y="148" width="90" height="24" rx="8" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+    <!-- Right Rotor Guard -->
+    <rect x="360" y="148" width="90" height="24" rx="8" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+    <!-- Center Body -->
+    <rect x="255" y="135" width="130" height="48" rx="16" fill="#475569" stroke="#cbd5e1" stroke-width="2"/>
 
-  <!-- Internal IMU & Barometer Badges -->
-  <rect x="272" y="145" width="46" height="26" rx="5" fill="#0284c7"/>
-  <text x="295" y="162" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">IMU</text>
+    <!-- Internal IMU & Barometer Badges -->
+    <rect x="272" y="145" width="46" height="26" rx="5" fill="#0284c7"/>
+    <text x="295" y="162" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">IMU</text>
 
-  <rect x="326" y="145" width="46" height="26" rx="5" fill="#0d9488"/>
-  <text x="349" y="162" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">氣壓計</text>
+    <rect x="326" y="145" width="46" height="26" rx="5" fill="#0d9488"/>
+    <text x="349" y="162" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">氣壓計</text>
 
-  <!-- Front AI Camera (Right side of fuselage) -->
-  <circle cx="385" cy="158" r="9" fill="#22c55e" stroke="#fff" stroke-width="2"/>
+    <!-- Front AI Camera (Right side of fuselage) -->
+    <circle cx="385" cy="158" r="9" fill="#22c55e" stroke="#fff" stroke-width="2"/>
+    <!-- Bottom Optical Flow Sensor -->
+    <circle cx="320" cy="183" r="8" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+  </g>
   <!-- AI Vision Cone -->
-  <polygon points="394,158 560,105 560,210" fill="rgba(34, 197, 94, 0.16)" stroke="#22c55e" stroke-dasharray="5,4" stroke-width="2"/>
+  <polygon class="sensor-cone" points="394,158 560,105 560,210" fill="rgba(34, 197, 94, 0.16)" stroke="#22c55e" stroke-dasharray="5,4" stroke-width="2"/>
   <text x="570" y="138" class="label" fill="#4ade80">📷 前方 AI 視覺鏡頭</text>
   <text x="570" y="158" class="small">• 即時辨識人臉與身體輪廓</text>
   <text x="570" y="176" class="small">• 執行 Follow 跟隨 / Dronie 漸遠</text>
   <text x="570" y="196" class="small" fill="#fcd34d">⚠️ 太暗、逆光或遮擋會跟丟</text>
 
-  <!-- Bottom Optical Flow Sensor -->
-  <circle cx="320" cy="183" r="8" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
   <!-- Optical Flow Cone Downwards -->
-  <polygon points="320,191 220,330 420,330" fill="rgba(245, 158, 11, 0.16)" stroke="#f59e0b" stroke-dasharray="5,4" stroke-width="2"/>
+  <polygon class="sensor-cone" points="320,191 220,330 420,330" fill="rgba(245, 158, 11, 0.16)" stroke="#f59e0b" stroke-dasharray="5,4" stroke-width="2"/>
 
   <!-- Callout Left: IMU & Barometer -->
   <line x1="272" y1="158" x2="175" y2="120" stroke="#38bdf8" stroke-width="2"/>

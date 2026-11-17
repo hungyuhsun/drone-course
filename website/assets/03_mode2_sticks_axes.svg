@@ -11,6 +11,22 @@
       .small { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
       .stick-ring { fill: #0f172a; stroke: #64748b; stroke-width: 3; }
       .axis-line { stroke: #475569; stroke-width: 2; stroke-dasharray: 4,4; }
+      @keyframes left-stick-demo {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(0, -32px); }
+        50% { transform: translate(0, 0); }
+        75% { transform: translate(32px, 0); }
+      }
+      @keyframes right-stick-demo {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(0, -32px); }
+        50% { transform: translate(32px, 0); }
+        75% { transform: translate(0, 32px); }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .knob-left { animation: left-stick-demo 4s ease-in-out 1; }
+        .knob-right { animation: right-stick-demo 4s ease-in-out 1; }
+      }
     </style>
   </defs>
 
@@ -44,7 +60,7 @@
   <text x="316" y="256" text-anchor="middle" class="small" fill="#fbbf24">Yaw Right</text>
 
   <!-- Stick Knob -->
-  <circle cx="207" cy="235" r="22" fill="#0284c7" stroke="#e0f2fe" stroke-width="3"/>
+  <circle class="knob-left" cx="207" cy="235" r="22" fill="#0284c7" stroke="#e0f2fe" stroke-width="3"/>
   <text x="207" y="380" text-anchor="middle" class="small">💡 提示：偏航 (Yaw) 只會原地轉頭，不會水平移動位置</text>
 
   <!-- Right Stick Panel -->
@@ -72,6 +88,6 @@
   <text x="704" y="256" text-anchor="middle" class="small" fill="#fb923c">Roll Right</text>
 
   <!-- Stick Knob -->
-  <circle cx="592" cy="235" r="22" fill="#16a34a" stroke="#dcfce7" stroke-width="3"/>
+  <circle class="knob-right" cx="592" cy="235" r="22" fill="#16a34a" stroke="#dcfce7" stroke-width="3"/>
   <text x="592" y="380" text-anchor="middle" class="small">💡 提示：緊張時「雙手放開搖桿」，無人機會自動煞車原地懸停！</text>
 </svg>
