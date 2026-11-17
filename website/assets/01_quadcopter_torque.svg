@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-labelledby="title-torque desc-torque">
+  <title id="title-torque">四軸無人機正反槳旋轉與反扭力平衡圖解</title>
+  <desc id="desc-torque">展示 DJI Neo 四軸飛行器頂視構造，左前與右後馬達為順時針旋轉(CW)，右前與左後馬達為逆時針旋轉(CCW)，藉此抵消反扭力保持機身穩定。</desc>
+  <defs>
+    <style>
+      .bg { fill: #0f172a; rx: 16px; }
+      .panel { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 12px; }
+      .title { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 20px; font-weight: 800; }
+      .subtitle { fill: #94a3b8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 13px; }
+      .label { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 14px; font-weight: 700; }
+      .small { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
+      .cw { stroke: #38bdf8; fill: rgba(56, 189, 248, 0.12); stroke-width: 3; }
+      .ccw { stroke: #fb923c; fill: rgba(251, 146, 60, 0.12); stroke-width: 3; }
+      .guard { stroke: #64748b; fill: none; stroke-width: 5; }
+      .body { fill: #334155; stroke: #94a3b8; stroke-width: 2; }
+    </style>
+    <marker id="arrow-cw" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrow-ccw" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="420" class="bg"/>
+
+  <!-- Title -->
+  <text x="30" y="42" class="title">圖 1-1｜四軸無人機構造與「2 順 2 逆」反扭力抵消原理 (DJI Neo 頂視圖)</text>
+  <text x="30" y="65" class="subtitle">對角線螺旋槳同向旋轉、相鄰反向旋轉，使機身總角動量為 0，不會在空中自轉打轉</text>
+
+  <!-- Left Diagram: Quadcopter Top View -->
+  <rect x="30" y="85" width="440" height="310" class="panel"/>
+
+  <!-- Nose / Camera Direction Indicator -->
+  <polygon points="250,102 236,126 264,126" fill="#22c55e"/>
+  <text x="250" y="98" text-anchor="middle" fill="#4ade80" font-family="sans-serif" font-size="12" font-weight="700">▲ 機頭方向 (AI 鏡頭)</text>
+
+  <!-- Arms -->
+  <line x1="165" y1="165" x2="335" y2="315" stroke="#475569" stroke-width="14" stroke-linecap="round"/>
+  <line x1="335" y1="165" x2="165" y2="315" stroke="#475569" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Prop Guards & Rotors -->
+  <!-- Front-Left: CW -->
+  <circle cx="165" cy="165" r="56" class="guard"/>
+  <circle cx="165" cy="165" r="46" class="cw"/>
+  <path d="M 135 145 A 36 36 0 1 1 130 175" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-cw)"/>
+  <text x="165" y="162" text-anchor="middle" class="label" fill="#38bdf8">M1 左前</text>
+  <text x="165" y="180" text-anchor="middle" class="small" fill="#38bdf8">順時針 CW ↻</text>
+
+  <!-- Front-Right: CCW -->
+  <circle cx="335" cy="165" r="56" class="guard"/>
+  <circle cx="335" cy="165" r="46" class="ccw"/>
+  <path d="M 365 145 A 36 36 0 1 0 370 175" fill="none" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow-ccw)"/>
+  <text x="335" y="162" text-anchor="middle" class="label" fill="#fb923c">M2 右前</text>
+  <text x="335" y="180" text-anchor="middle" class="small" fill="#fb923c">逆時針 CCW ↺</text>
+
+  <!-- Rear-Left: CCW -->
+  <circle cx="165" cy="315" r="56" class="guard"/>
+  <circle cx="165" cy="315" r="46" class="ccw"/>
+  <path d="M 195 295 A 36 36 0 1 0 200 325" fill="none" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow-ccw)"/>
+  <text x="165" y="312" text-anchor="middle" class="label" fill="#fb923c">M4 左後</text>
+  <text x="165" y="330" text-anchor="middle" class="small" fill="#fb923c">逆時針 CCW ↺</text>
+
+  <!-- Rear-Right: CW -->
+  <circle cx="335" cy="315" r="56" class="guard"/>
+  <circle cx="335" cy="315" r="46" class="cw"/>
+  <path d="M 305 295 A 36 36 0 1 1 300 325" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-cw)"/>
+  <text x="335" y="312" text-anchor="middle" class="label" fill="#38bdf8">M3 右後</text>
+  <text x="335" y="330" text-anchor="middle" class="small" fill="#38bdf8">順時針 CW ↻</text>
+
+  <!-- Center Fuselage -->
+  <rect x="218" y="185" width="64" height="110" rx="22" class="body"/>
+  <circle cx="250" cy="212" r="10" fill="#0284c7" stroke="#e0f2fe" stroke-width="2"/>
+  <text x="250" y="242" text-anchor="middle" class="small">模式鍵</text>
+  <rect x="234" y="255" width="32" height="28" rx="4" fill="#1e293b" stroke="#64748b"/>
+  <text x="250" y="273" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">電池</text>
+
+  <!-- Annotation Callouts on Right Panel -->
+  <rect x="490" y="85" width="280" height="310" class="panel"/>
+  <text x="510" y="118" class="label" fill="#38bdf8">❶ 正反槳反扭力平衡 (Torque Balance)</text>
+  <text x="510" y="140" class="small">• 順時針槳 (M1, M3) 產生逆時針反作用力</text>
+  <text x="510" y="160" class="small">• 逆時針槳 (M2, M4) 產生順時針反作用力</text>
+  <text x="510" y="180" class="small">➔ 兩股反扭力完全抵消，機頭穩定不自轉！</text>
+
+  <line x1="510" y1="198" x2="750" y2="198" stroke="#334155" stroke-width="1"/>
+
+  <text x="510" y="224" class="label" fill="#fb923c">❷ 如何控制機頭左右轉向 (Yaw)？</text>
+  <text x="510" y="246" class="small">• 想右轉時：飛控系統自動提高 CW 轉速、</text>
+  <text x="510" y="266" class="small">  降低 CCW 轉速，打破平衡產生轉向力矩。</text>
+
+  <line x1="510" y1="284" x2="750" y2="284" stroke="#334155" stroke-width="1"/>
+
+  <text x="510" y="310" class="label" fill="#4ade80">❸ 涵道式全包覆保護罩 (135g 超輕量)</text>
+  <text x="510" y="332" class="small">• 外圈灰色保護環防止手指或障礙物觸碰</text>
+  <text x="510" y="352" class="small">• 同時具有整流涵道效果，提升室內安全性</text>
+  <text x="510" y="374" class="small" fill="#fcd34d">⚠️ 注意：手指仍不可伸入圓環內部！</text>
+</svg>

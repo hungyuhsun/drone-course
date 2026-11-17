@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-labelledby="title-mode2 desc-mode2">
+  <title id="title-mode2">美國手 (Mode 2) 雙搖桿與空間四軸姿態控制圖解</title>
+  <desc id="desc-mode2">展示美國手 Mode 2 左搖桿控制油門升降(Throttle)與機頭左右轉向(Yaw)，右搖桿控制俯仰前進後退(Pitch)與橫滾左右平移(Roll)。</desc>
+  <defs>
+    <style>
+      .bg { fill: #0f172a; rx: 16px; }
+      .panel { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 12px; }
+      .title { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 20px; font-weight: 800; }
+      .subtitle { fill: #94a3b8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 13px; }
+      .label { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 15px; font-weight: 700; }
+      .small { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
+      .stick-ring { fill: #0f172a; stroke: #64748b; stroke-width: 3; }
+      .axis-line { stroke: #475569; stroke-width: 2; stroke-dasharray: 4,4; }
+    </style>
+  </defs>
+
+  <rect width="800" height="420" class="bg"/>
+
+  <text x="30" y="42" class="title">圖 2-1｜美國手 (Mode 2) 搖桿操控邏輯與空間四動作對照圖</text>
+  <text x="30" y="65" class="subtitle">手機 DJI Fly 虛擬搖桿與實體遙控手柄皆預設使用「美國手 Mode 2」：左手管高度與轉頭，右手管前後左右平移</text>
+
+  <!-- Left Stick Panel -->
+  <rect x="30" y="85" width="355" height="310" class="panel"/>
+  <text x="207" y="115" text-anchor="middle" class="label" fill="#38bdf8">🕹️ 左搖桿 (Left Stick)：升降 ＋ 機頭旋轉</text>
+
+  <circle cx="207" cy="235" r="88" class="stick-ring"/>
+  <line x1="207" y1="135" x2="207" y2="335" class="axis-line"/>
+  <line x1="107" y1="235" x2="307" y2="235" class="axis-line"/>
+
+  <!-- Up/Down Arrows -->
+  <polygon points="207,138 197,156 217,156" fill="#38bdf8"/>
+  <text x="207" y="130" text-anchor="middle" class="small" fill="#38bdf8" font-weight="700">⬆️ 上升 Up (Throttle+)</text>
+
+  <polygon points="207,332 197,314 217,314" fill="#38bdf8"/>
+  <text x="207" y="352" text-anchor="middle" class="small" fill="#38bdf8" font-weight="700">⬇️ 下降 Down (Throttle-)</text>
+
+  <!-- Left/Right Arrows -->
+  <polygon points="110,235 128,225 128,245" fill="#fbbf24"/>
+  <text x="98" y="218" text-anchor="middle" class="small" fill="#fbbf24" font-weight="700">↩️ 左自轉</text>
+  <text x="98" y="256" text-anchor="middle" class="small" fill="#fbbf24">Yaw Left</text>
+
+  <polygon points="304,235 286,225 286,245" fill="#fbbf24"/>
+  <text x="316" y="218" text-anchor="middle" class="small" fill="#fbbf24" font-weight="700">右自轉 ↪️</text>
+  <text x="316" y="256" text-anchor="middle" class="small" fill="#fbbf24">Yaw Right</text>
+
+  <!-- Stick Knob -->
+  <circle cx="207" cy="235" r="22" fill="#0284c7" stroke="#e0f2fe" stroke-width="3"/>
+  <text x="207" y="380" text-anchor="middle" class="small">💡 提示：偏航 (Yaw) 只會原地轉頭，不會水平移動位置</text>
+
+  <!-- Right Stick Panel -->
+  <rect x="415" y="85" width="355" height="310" class="panel"/>
+  <text x="592" y="115" text-anchor="middle" class="label" fill="#4ade80">🕹️ 右搖桿 (Right Stick)：前後 ＋ 左右平移</text>
+
+  <circle cx="592" cy="235" r="88" class="stick-ring"/>
+  <line x1="592" y1="135" x2="592" y2="335" class="axis-line"/>
+  <line x1="492" y1="235" x2="692" y2="235" class="axis-line"/>
+
+  <!-- Forward/Backward Arrows -->
+  <polygon points="592,138 582,156 602,156" fill="#4ade80"/>
+  <text x="592" y="130" text-anchor="middle" class="small" fill="#4ade80" font-weight="700">⏩ 前進 Forward (Pitch+)</text>
+
+  <polygon points="592,332 582,314 602,314" fill="#4ade80"/>
+  <text x="592" y="352" text-anchor="middle" class="small" fill="#4ade80" font-weight="700">⏪ 後退 Backward (Pitch-)</text>
+
+  <!-- Roll Left/Right Arrows -->
+  <polygon points="495,235 513,225 513,245" fill="#fb923c"/>
+  <text x="480" y="218" text-anchor="middle" class="small" fill="#fb923c" font-weight="700">⬅️ 左平移</text>
+  <text x="480" y="256" text-anchor="middle" class="small" fill="#fb923c">Roll Left</text>
+
+  <polygon points="689,235 671,225 671,245" fill="#fb923c"/>
+  <text x="704" y="218" text-anchor="middle" class="small" fill="#fb923c" font-weight="700">右平移 ➡️</text>
+  <text x="704" y="256" text-anchor="middle" class="small" fill="#fb923c">Roll Right</text>
+
+  <!-- Stick Knob -->
+  <circle cx="592" cy="235" r="22" fill="#16a34a" stroke="#dcfce7" stroke-width="3"/>
+  <text x="592" y="380" text-anchor="middle" class="small">💡 提示：緊張時「雙手放開搖桿」，無人機會自動煞車原地懸停！</text>
+</svg>

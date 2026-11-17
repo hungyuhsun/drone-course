@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-labelledby="title-sensors desc-sensors">
+  <title id="title-sensors">無人機室內無 GPS 三大感測器與光流定位原理圖</title>
+  <desc id="desc-sensors">展示無人機側面構造：內部 IMU 慣性測量單元、氣壓計定高、前方 AI 追蹤鏡頭，以及底部光流感測器拍攝地面紋理定位的原理與鏡面/全黑地板失效警示。</desc>
+  <defs>
+    <style>
+      .bg { fill: #0f172a; rx: 16px; }
+      .panel { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 12px; }
+      .title { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 20px; font-weight: 800; }
+      .subtitle { fill: #94a3b8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 13px; }
+      .label { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 14px; font-weight: 700; }
+      .small { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect width="800" height="420" class="bg"/>
+
+  <text x="30" y="42" class="title">圖 1-2｜室內沒有 GPS 訊號，無人機如何定高與認路？（三大感測器 + 邊緣 AI）</text>
+  <text x="30" y="65" class="subtitle">結合 IMU 陀螺儀、氣壓計與底部光流視覺鏡頭 (Optical Flow)，每秒數百次修正機身姿態</text>
+
+  <!-- Main Illustration Box -->
+  <rect x="30" y="85" width="740" height="310" class="panel"/>
+
+  <!-- Drone Side Profile -->
+  <!-- Left Rotor Guard -->
+  <rect x="190" y="148" width="90" height="24" rx="8" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Right Rotor Guard -->
+  <rect x="360" y="148" width="90" height="24" rx="8" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Center Body -->
+  <rect x="255" y="135" width="130" height="48" rx="16" fill="#475569" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Internal IMU & Barometer Badges -->
+  <rect x="272" y="145" width="46" height="26" rx="5" fill="#0284c7"/>
+  <text x="295" y="162" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">IMU</text>
+
+  <rect x="326" y="145" width="46" height="26" rx="5" fill="#0d9488"/>
+  <text x="349" y="162" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">氣壓計</text>
+
+  <!-- Front AI Camera (Right side of fuselage) -->
+  <circle cx="385" cy="158" r="9" fill="#22c55e" stroke="#fff" stroke-width="2"/>
+  <!-- AI Vision Cone -->
+  <polygon points="394,158 560,105 560,210" fill="rgba(34, 197, 94, 0.16)" stroke="#22c55e" stroke-dasharray="5,4" stroke-width="2"/>
+  <text x="570" y="138" class="label" fill="#4ade80">📷 前方 AI 視覺鏡頭</text>
+  <text x="570" y="158" class="small">• 即時辨識人臉與身體輪廓</text>
+  <text x="570" y="176" class="small">• 執行 Follow 跟隨 / Dronie 漸遠</text>
+  <text x="570" y="196" class="small" fill="#fcd34d">⚠️ 太暗、逆光或遮擋會跟丟</text>
+
+  <!-- Bottom Optical Flow Sensor -->
+  <circle cx="320" cy="183" r="8" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+  <!-- Optical Flow Cone Downwards -->
+  <polygon points="320,191 220,330 420,330" fill="rgba(245, 158, 11, 0.16)" stroke="#f59e0b" stroke-dasharray="5,4" stroke-width="2"/>
+
+  <!-- Callout Left: IMU & Barometer -->
+  <line x1="272" y1="158" x2="175" y2="120" stroke="#38bdf8" stroke-width="2"/>
+  <text x="48" y="115" class="label" fill="#38bdf8">🧠 IMU 慣性測量單元</text>
+  <text x="48" y="135" class="small">偵測俯仰/橫滾傾斜角，自動保持水平</text>
+
+  <line x1="349" y1="145" x2="175" y2="210" stroke="#2dd4bf" stroke-width="2"/>
+  <text x="48" y="205" class="label" fill="#2dd4bf">🌬️ 氣壓計 (Barometer)</text>
+  <text x="48" y="225" class="small">偵測空氣壓力變化，鎖定離地高度</text>
+  <text x="48" y="245" class="small" fill="#fca5a5">⚠️ 冷氣/電扇強風直吹會干擾定高！</text>
+
+  <!-- Ground Surface Comparison -->
+  <!-- Good Textured Floor -->
+  <rect x="195" y="330" width="125" height="24" fill="#15803d" stroke="#4ade80" stroke-width="2"/>
+  <line x1="215" y1="330" x2="215" y2="354" stroke="#86efac" stroke-width="2"/>
+  <line x1="245" y1="330" x2="245" y2="354" stroke="#86efac" stroke-width="2"/>
+  <line x1="275" y1="330" x2="275" y2="354" stroke="#86efac" stroke-width="2"/>
+  <line x1="300" y1="330" x2="300" y2="354" stroke="#86efac" stroke-width="2"/>
+  <text x="257" y="374" text-anchor="middle" class="small" fill="#4ade80">✅ 有紋理地板 / 巧拼 / 膠帶（定位穩）</text>
+
+  <!-- Bad Mirror/Black Floor -->
+  <rect x="320" y="330" width="125" height="24" fill="#090d16" stroke="#ef4444" stroke-width="2"/>
+  <text x="382" y="374" text-anchor="middle" class="small" fill="#f87171">❌ 全黑 / 鏡面反光磁磚（易漂移）</text>
+
+  <!-- Right Bottom Explanation -->
+  <text x="465" y="275" class="label" fill="#fbbf24">👁️ 底部光流鏡頭 (Optical Flow)</text>
+  <text x="465" y="297" class="small">• 原理如同「光學滑鼠底部感光器」</text>
+  <text x="465" y="317" class="small">• 透過連續拍攝地面紋理移動，計算水平位移</text>
+  <text x="465" y="337" class="small">• 禮堂磁磚反光時，請貼紙膠帶或鋪巧拼輔助！</text>
+</svg>

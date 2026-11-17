@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 460" role="img" aria-labelledby="title-manual desc-manual">
+  <title id="title-manual">DJI Neo 官方使用者手冊 (User Manual) 機身部件編號圖解</title>
+  <desc id="desc-manual">依據 DJI Neo User Manual (Aircraft Diagram) 繪製之頂視與底視部件標示圖，包含 1.雲台與相機、2.模式按鍵與指示燈、3.電源按鍵與電量燈、4.一體式保護罩、5.螺旋槳、6.下視視覺與紅外線感測系統、7.智慧飛行電池、8.電池卡扣、9.USB-C 充電與傳輸埠。</desc>
+  <defs>
+    <style>
+      .bg { fill: #0f172a; rx: 16px; }
+      .panel { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 12px; }
+      .title { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 19px; font-weight: 800; }
+      .subtitle { fill: #94a3b8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12.5px; }
+      .view-title { fill: #38bdf8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 14px; font-weight: 700; }
+      .legend-title { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 14px; font-weight: 700; }
+      .legend-text { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
+      .badge { fill: #0284c7; stroke: #ffffff; stroke-width: 1.5; }
+      .badge-warn { fill: #d97706; stroke: #ffffff; stroke-width: 1.5; }
+      .badge-num { fill: #ffffff; font-family: system-ui, sans-serif; font-size: 11px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+      .callout-line { stroke: #38bdf8; stroke-width: 1.8; stroke-dasharray: 3,2; }
+    </style>
+  </defs>
+
+  <rect width="840" height="460" class="bg"/>
+
+  <text x="28" y="38" class="title">圖 1-0｜DJI Neo 機身部件圖解（引用自 DJI Neo User Manual 官方手冊 Aircraft Diagram）</text>
+  <text x="28" y="60" class="subtitle">資料來源：DJI Neo User Manual (dl.djicdn.com)｜起飛前務必卸下 [1] 雲台保護罩，中場補電使用機尾 [9] USB-C 埠</text>
+
+  <!-- Left Panel: Top View -->
+  <rect x="28" y="76" width="250" height="360" class="panel"/>
+  <text x="153" y="102" text-anchor="middle" class="view-title">【頂視圖 Top View】正面朝上</text>
+
+  <!-- Drone Top Silhouette -->
+  <!-- 4 Ducted Guards -->
+  <circle cx="98" cy="175" r="44" fill="#0f172a" stroke="#64748b" stroke-width="6"/>
+  <circle cx="208" cy="175" r="44" fill="#0f172a" stroke="#64748b" stroke-width="6"/>
+  <circle cx="98" cy="285" r="44" fill="#0f172a" stroke="#64748b" stroke-width="6"/>
+  <circle cx="208" cy="285" r="44" fill="#0f172a" stroke="#64748b" stroke-width="6"/>
+  <!-- Propellers -->
+  <line x1="72" y1="175" x2="124" y2="175" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <line x1="98" y1="149" x2="98" y2="201" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <line x1="182" y1="175" x2="234" y2="175" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <line x1="208" y1="149" x2="208" y2="201" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <line x1="72" y1="285" x2="124" y2="285" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <line x1="182" y1="285" x2="234" y2="285" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Center Top Body -->
+  <rect x="125" y="150" width="56" height="150" rx="22" fill="#475569" stroke="#cbd5e1" stroke-width="2"/>
+  <!-- [1] Gimbal & Camera at Front Nose -->
+  <rect x="139" y="138" width="28" height="18" rx="5" fill="#22c55e" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- [2] Mode Button & LEDs -->
+  <circle cx="153" cy="182" r="9" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.5"/>
+  <!-- [3] Power Button & 4 LEDs -->
+  <rect x="143" y="218" width="20" height="12" rx="4" fill="#38bdf8"/>
+  <circle cx="141" cy="240" r="2.5" fill="#4ade80"/>
+  <circle cx="149" cy="240" r="2.5" fill="#4ade80"/>
+  <circle cx="157" cy="240" r="2.5" fill="#4ade80"/>
+  <circle cx="165" cy="240" r="2.5" fill="#4ade80"/>
+
+  <!-- Numbered Badges Top View -->
+  <line x1="153" y1="138" x2="153" y2="120" class="callout-line"/>
+  <circle cx="153" cy="118" r="10" class="badge-warn"/><text x="153" y="118" class="badge-num">1</text>
+
+  <line x1="162" y1="182" x2="245" y2="140" class="callout-line"/>
+  <circle cx="250" cy="138" r="10" class="badge"/><text x="250" y="138" class="badge-num">2</text>
+
+  <line x1="163" y1="224" x2="248" y2="224" class="callout-line"/>
+  <circle cx="252" cy="224" r="10" class="badge"/><text x="252" y="224" class="badge-num">3</text>
+
+  <line x1="54" y1="175" x2="45" y2="140" class="callout-line"/>
+  <circle cx="45" cy="138" r="10" class="badge"/><text x="45" y="138" class="badge-num">4</text>
+
+  <line x1="98" y1="175" x2="55" y2="230" class="callout-line"/>
+  <circle cx="52" cy="232" r="10" class="badge"/><text x="52" y="232" class="badge-num">5</text>
+
+  <text x="153" y="368" text-anchor="middle" class="legend-text" fill="#fcd34d">▲ [2] 短按切換 AI 模式</text>
+  <text x="153" y="388" text-anchor="middle" class="legend-text" fill="#fcd34d">長按 2 秒啟動掌上起飛</text>
+  <text x="153" y="414" text-anchor="middle" class="legend-text" fill="#94a3b8">[3] 短按1次+長按2秒 開關機</text>
+
+  <!-- Middle Panel: Bottom & Rear View -->
+  <rect x="292" y="76" width="250" height="360" class="panel"/>
+  <text x="417" y="102" text-anchor="middle" class="view-title">【底視與機尾 Bottom / Rear】</text>
+
+  <!-- Drone Bottom Silhouette -->
+  <circle cx="362" cy="175" r="44" fill="#0f172a" stroke="#475569" stroke-width="5"/>
+  <circle cx="472" cy="175" r="44" fill="#0f172a" stroke="#475569" stroke-width="5"/>
+  <circle cx="362" cy="285" r="44" fill="#0f172a" stroke="#475569" stroke-width="5"/>
+  <circle cx="472" cy="285" r="44" fill="#0f172a" stroke="#475569" stroke-width="5"/>
+
+  <rect x="389" y="150" width="56" height="150" rx="22" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+  <!-- [6] Downward Vision & Infrared Sensors -->
+  <circle cx="409" cy="172" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="425" cy="172" r="6" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- [7] Intelligent Flight Battery -->
+  <rect x="396" y="192" width="42" height="75" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- [8] Battery Buckle -->
+  <rect x="405" y="268" width="24" height="10" rx="3" fill="#94a3b8"/>
+  <!-- [9] Rear USB-C Port -->
+  <rect x="407" y="294" width="20" height="8" rx="3" fill="#22c55e" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- Numbered Badges Bottom View -->
+  <line x1="417" y1="166" x2="417" y2="124" class="callout-line"/>
+  <circle cx="417" cy="120" r="10" class="badge-warn"/><text x="417" y="120" class="badge-num">6</text>
+
+  <line x1="438" y1="228" x2="512" y2="228" class="callout-line"/>
+  <circle cx="516" cy="228" r="10" class="badge"/><text x="516" y="228" class="badge-num">7</text>
+
+  <line x1="396" y1="273" x2="325" y2="325" class="callout-line"/>
+  <circle cx="320" cy="328" r="10" class="badge"/><text x="320" y="328" class="badge-num">8</text>
+
+  <line x1="417" y1="302" x2="417" y2="342" class="callout-line"/>
+  <circle cx="417" cy="346" r="10" class="badge-warn"/><text x="417" y="346" class="badge-num">9</text>
+
+  <text x="417" y="378" text-anchor="middle" class="legend-text" fill="#4ade80">🔌 [9] USB-C 充電與資料埠</text>
+  <text x="417" y="398" text-anchor="middle" class="legend-text">支援 PD 快充直充 ＆ 電腦傳檔</text>
+  <text x="417" y="418" text-anchor="middle" class="legend-text" fill="#fca5a5">⚠️ 嚴禁遮擋 [6] 底部視覺感測器</text>
+
+  <!-- Right Panel: Official Manual Legend (1-9) -->
+  <rect x="556" y="76" width="256" height="360" class="panel"/>
+  <text x="574" y="104" class="legend-title">📖 官方手冊部件對照表 (1–9)</text>
+
+  <text x="574" y="132" class="legend-text" fill="#fcd34d"><strong>[1] 雲台與相機 (Gimbal &amp; Camera)</strong></text>
+  <text x="574" y="149" class="legend-text">開機前務必先卸下透明雲台保護罩！</text>
+
+  <text x="574" y="174" class="legend-text" fill="#38bdf8"><strong>[2] 模式按鍵與指示燈 (Mode Button)</strong></text>
+  <text x="574" y="191" class="legend-text">短按切換跟隨/漸遠/環繞；長按2秒起飛</text>
+
+  <text x="574" y="216" class="legend-text"><strong>[3] 電源鍵與電量燈 (Power &amp; LEDs)</strong></text>
+  <text x="574" y="233" class="legend-text">短按看電量；短按再長按 2 秒開關機</text>
+
+  <text x="574" y="258" class="legend-text"><strong>[4] 一體式保護罩 (Propeller Guard)</strong></text>
+  <text x="574" y="275" class="legend-text"><strong>[5] 螺旋槳 (Propellers)</strong> 正反槳配置</text>
+
+  <text x="574" y="302" class="legend-text" fill="#fcd34d"><strong>[6] 下視視覺與紅外線感測系統</strong></text>
+  <text x="574" y="319" class="legend-text">Downward Vision &amp; IR Sensing System</text>
+
+  <text x="574" y="346" class="legend-text"><strong>[7] 智慧飛行電池 ＆ [8] 電池卡扣</strong></text>
+  <text x="574" y="363" class="legend-text">安裝時須推到底確認卡扣鎖緊</text>
+
+  <text x="574" y="390" class="legend-text" fill="#4ade80"><strong>[9] USB-C 埠 (Charging / Data)</strong></text>
+  <text x="574" y="407" class="legend-text">課間插 PD 快充補電；連電腦讀 22GB 檔案</text>
+</svg>

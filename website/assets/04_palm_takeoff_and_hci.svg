@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-labelledby="title-palm desc-palm">
+  <title id="title-palm">掌上起降安全手勢與人機介面(HCI)延遲比較圖</title>
+  <desc id="desc-palm">左側展示掌上起降正確手掌平伸姿勢與禁止手指抓握警示；右側對比手機 Wi-Fi 觸控搖桿與實體遙控手柄在觸覺回饋與訊號延遲上的差異。</desc>
+  <defs>
+    <style>
+      .bg { fill: #0f172a; rx: 16px; }
+      .panel { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 12px; }
+      .title { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 20px; font-weight: 800; }
+      .subtitle { fill: #94a3b8; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 13px; }
+      .label { fill: #f8fafc; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 15px; font-weight: 700; }
+      .small { fill: #cbd5e1; font-family: system-ui, "Noto Sans TC", sans-serif; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect width="800" height="420" class="bg"/>
+
+  <text x="30" y="42" class="title">圖 3-1｜掌上起降安全姿勢 SOP ＆ 人機介面 (HCI) 操控比較</text>
+  <text x="30" y="65" class="subtitle">左圖：第 1 週掌上起降正確手勢 ｜ 右圖：第 3 週「手機 Wi-Fi 觸控」vs「實體遙控手柄」工程對照</text>
+
+  <!-- Left Panel: Palm Takeoff Safety -->
+  <rect x="30" y="85" width="355" height="310" class="panel"/>
+  <text x="50" y="118" class="label" fill="#4ade80">🖐️ 掌上起降安全鐵則 (Palm Takeoff &amp; Landing)</text>
+
+  <!-- Good Posture Box -->
+  <rect x="50" y="135" width="315" height="110" rx="8" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" stroke-width="2"/>
+  <text x="68" y="160" class="label" fill="#4ade80">✅ 正確姿勢：五指併攏完全平伸</text>
+  <!-- Drone on Flat Hand graphic -->
+  <rect x="95" y="178" width="90" height="16" rx="6" fill="#38bdf8"/>
+  <text x="140" y="190" text-anchor="middle" font-size="10" fill="#0f172a" font-family="sans-serif" font-weight="700">DJI Neo</text>
+  <rect x="75" y="198" width="140" height="10" rx="5" fill="#fcd34d"/>
+  <text x="230" y="192" class="small">手臂伸直離臉 ≥ 50cm</text>
+  <text x="230" y="212" class="small">手掌像「平底鍋」托住</text>
+  <text x="68" y="234" class="small">降落時將手掌平放於機身下方，等待自動降落停槳</text>
+
+  <!-- Bad Posture Box -->
+  <rect x="50" y="260" width="315" height="115" rx="8" fill="rgba(239, 68, 68, 0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="68" y="286" class="label" fill="#f87171">❌ 危險禁止：手指彎曲抓握 / 半空硬抓</text>
+  <text x="68" y="312" class="small">• 手指往上翹會伸進底部保護罩縫隙打傷手指！</text>
+  <text x="68" y="334" class="small">• 緊急狀況需要停機時：握住機身頂部「快速翻轉 180°」</text>
+  <text x="68" y="354" class="small" fill="#fca5a5">  即可觸發 IMU 保護機制瞬間斷電停槳。</text>
+
+  <!-- Right Panel: HCI Comparison -->
+  <rect x="415" y="85" width="355" height="310" class="panel"/>
+  <text x="435" y="118" class="label" fill="#38bdf8">🎮 人機介面 (HCI) 與通訊延遲比較</text>
+
+  <!-- Mobile App Box -->
+  <rect x="435" y="135" width="315" height="110" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+  <text x="452" y="160" class="label" fill="#fbbf24">📱 手機 DJI Fly 虛擬搖桿 (Wi-Fi)</text>
+  <text x="452" y="184" class="small">• 介面特性：平面玻璃無物理彈簧回正感（易滑偏）</text>
+  <text x="452" y="204" class="small">• 視覺分心：飛手需頻頻低頭看螢幕確認手指位置</text>
+  <text x="452" y="224" class="small">• 訊號表現：受教室 30 支手機 Wi-Fi 同頻干擾較明顯</text>
+
+  <!-- Physical Controller Box -->
+  <rect x="435" y="260" width="315" height="115" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+  <text x="452" y="286" class="label" fill="#38bdf8">🕹️ 實體遙控手柄 (RC Controller)</text>
+  <text x="452" y="310" class="small">• 觸覺回饋：具物理彈簧自動置中，放手即精準懸停</text>
+  <text x="452" y="330" class="small">• 盲操作性：眼睛可 100% 盯緊無人機與障礙門框</text>
+  <text x="452" y="350" class="small">• 訊號表現：專用圖傳協定，抗干擾強、控制延遲極低</text>
+</svg>
