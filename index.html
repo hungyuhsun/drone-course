@@ -3,13 +3,721 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=website/index.html" />
-  <title>重新導向至無人機 × 資訊科技課程網站...</title>
-  <script>
-    window.location.replace("website/index.html");
-  </script>
+  <title>無人機 × 資訊科技｜4 週高中跨文化課程網站</title>
+  <link rel="stylesheet" href="website/styles.css" />
 </head>
 <body>
-  <p>正在前往課程網站，若未自動跳轉請點此：<a href="website/index.html">進入無人機 × 資訊科技課程平台</a></p>
+  <a href="#main-content" class="skip-link">跳至主要內容 (Skip to main content)</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true">🚁</span>
+        <div>
+          <h1 class="site-title">無人機 × 資訊科技課程平台</h1>
+          <p class="site-subtitle">DJI Neo / Neo 2｜高中 4 週連排教案・多語共學版（台／越／印／緬）</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="open-timer-btn" class="btn btn-primary">
+          <span aria-hidden="true">⏱️</span> 課堂計時器
+        </button>
+        <button type="button" id="theme-toggle-btn" class="btn btn-secondary" aria-pressed="false">
+          <span aria-hidden="true">🌗</span> <span class="theme-label">切換深淺色</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="課程資源總覽">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">108 課綱資訊科技主軸 (75%) × 生活科技空間實作 (25%)</span>
+          <h2>從「掌上 AI 飛行」到「演算法除錯與 HCI 實驗」</h2>
+          <p>
+            專為 20–32 人高中班級設計，整合 7 架學生機與 1 架教師機、克服單顆電池續航限制的
+            <strong>100 分鐘雙波段快充節奏</strong>，並內建越南語、印尼語、緬甸語安全指令圖卡與互動模擬工具。
+          </p>
+        </div>
+
+        <dl class="stats-grid" aria-label="教室硬體配置">
+          <div class="stat-card">
+            <dt>學生分組機</dt>
+            <dd>7 架 <small>DJI Neo (7組)</small></dd>
+          </div>
+          <div class="stat-card">
+            <dt>示範 / 備援機</dt>
+            <dd>1 架 <small>DJI Neo 2</small></dd>
+          </div>
+          <div class="stat-card">
+            <dt>實體遙控手柄</dt>
+            <dd>2 台 <small>雙站輪替 / PK</small></dd>
+          </div>
+          <div class="stat-card">
+            <dt>電池與充電</dt>
+            <dd>7+2 顆 <small>中場 PD 快充</small></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <nav class="tab-nav-wrapper" aria-label="課程單元導覽">
+    <div class="container">
+      <div class="tablist" role="tablist" aria-label="課程功能分頁">
+        <button type="button" role="tab" id="tab-study" aria-selected="true" aria-controls="panel-study" tabindex="0">
+          📖 學生研讀講義
+        </button>
+        <button type="button" role="tab" id="tab-homework" aria-selected="false" aria-controls="panel-homework" tabindex="-1">
+          ✍️ 實作檢核與作業
+        </button>
+        <button type="button" role="tab" id="tab-curriculum" aria-selected="false" aria-controls="panel-curriculum" tabindex="-1">
+          📅 4 週課程與連排節奏
+        </button>
+        <button type="button" role="tab" id="tab-multilingual" aria-selected="false" aria-controls="panel-multilingual" tabindex="-1">
+          🌏 多語安全圖卡與手勢
+        </button>
+        <button type="button" role="tab" id="tab-lab" aria-selected="false" aria-controls="panel-lab" tabindex="-1">
+          💻 資訊科技互動實驗室
+        </button>
+        <button type="button" role="tab" id="tab-arena" aria-selected="false" aria-controls="panel-arena" tabindex="-1">
+          🏟️ 場地配置與評量規準
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="container main-content">
+    <!-- TAB 0: 學生研讀講義 -->
+    <section id="panel-study" role="tabpanel" aria-labelledby="tab-study" class="tab-panel">
+      <div class="callout callout-info">
+        <span aria-hidden="true">💡</span>
+        <div>
+          <strong>給同學的課前／課中研讀指南：</strong>
+          實飛前請先閱讀本週知識單元，理解無人機背後的<strong>感測器、通訊與演算法原理</strong>，完成底部的自我檢測題後，再切換至「<strong>✍️ 實作檢核與作業</strong>」勾選實作進度！
+        </div>
+      </div>
+
+      <div class="study-grid">
+        <details class="study-unit" open>
+          <summary>Unit 1（第 1 週講義）：認識 DJI Neo 機身部件（官方手冊圖解）、正反槳力學與三大感測器</summary>
+          <div class="study-body">
+            <h4>0. 認識無人機部件（引用自 DJI Neo User Manual 官方使用者手冊）</h4>
+            <p>
+              起飛前請對照下方 <strong>DJI Neo 官方手冊部件編號 (1–9)</strong> 進行安全檢查：務必先卸下 <code>[1] 雲台保護罩</code>，確認 <code>[6] 底部視覺與紅外線感測器</code> 乾淨無遮擋；中場休息補電時，請將充電線插入機尾 <code>[9] USB-C 埠</code>。
+            </p>
+            <figure class="study-figure">
+              <img src="website/assets/05_dji_neo_manual_diagram.svg" alt="DJI Neo 官方使用者手冊 Aircraft Diagram 機身頂視與底視部件 1 至 9 號圖解" width="840" height="460" fetchpriority="high" />
+              <figcaption>
+                ▲ 圖 1-0：DJI Neo 機身部件編號圖解（依據 DJI Neo User Manual 繪製）｜官方手冊下載：
+                <a href="https://dl.djicdn.com/downloads/DJI_Neo/DJI_Neo_User_Manual_en.pdf" target="_blank" rel="noopener noreferrer">📄 DJI Neo User Manual (官方 PDF 直連)</a>、
+                <a href="https://www.dji.com/tw/neo/downloads" target="_blank" rel="noopener noreferrer">🔗 DJI 台灣官方手冊與快速指南下載中心</a>
+              </figcaption>
+            </figure>
+
+            <h4>1. 四軸飛行力學：為什麼 4 顆馬達要「2 順 2 逆」？</h4>
+            <p>
+              螺旋槳旋轉產生向上的升力時，同時會產生一股反向的「反扭力」（就像站在滑板上用力往右甩手，身體會往左轉）。如果 4 顆馬達都往同一個方向轉，無人機就會在空中瘋狂打轉！因此對角線兩兩相同、相鄰相反（<strong>2 順時針 CW + 2 逆時針 CCW</strong>），才能互相抵消旋轉力矩。
+            </p>
+            <figure class="study-figure">
+              <img src="website/assets/01_quadcopter_torque.svg" alt="四軸無人機頂視構造與2順2逆反扭力抵消原理圖解" width="800" height="420" loading="lazy" />
+              <figcaption>
+                ▲ 自製教學圖解 1-1：DJI Neo 頂視構造與對角線正反槳反扭力平衡｜外部參考：
+                <a href="https://commons.wikimedia.org/wiki/File:Quadrotorhover.svg" target="_blank" rel="noopener noreferrer">Wikimedia 四軸懸停力學圖</a>、
+                <a href="https://commons.wikimedia.org/wiki/File:Quadrotoryaw.svg" target="_blank" rel="noopener noreferrer">Wikimedia 四軸偏航力矩圖</a>、
+                <a href="https://www.dji.com/tw/neo" target="_blank" rel="noopener noreferrer">DJI Neo 官方產品規格圖</a>
+              </figcaption>
+            </figure>
+
+            <h4>2. 室內無 GPS 的三大感測器 (Sensors)</h4>
+            <div class="concept-cards">
+              <div class="concept-card">
+                <strong>🧠 IMU 慣性測量單元</strong>
+                <p>像人類的「內耳平衡覺」，內含陀螺儀與加速度計，每秒偵測數百次機身傾斜角度並自動修正。</p>
+              </div>
+              <div class="concept-card">
+                <strong>🌬️ 氣壓計 (Barometer)</strong>
+                <p>像「搭電梯耳朵會感覺壓力變化」，透過測量空氣壓力微幅變化，讓無人機穩定維持固定高度。</p>
+              </div>
+              <div class="concept-card">
+                <strong>👁️ 底部光流鏡頭 (Optical Flow)</strong>
+                <p>像「光學滑鼠底部」，不斷拍攝地面紋理的移動方向來鎖定水平位置。<strong>注意：遇到全黑或鏡面反光地板會失效漂移！</strong></p>
+              </div>
+            </div>
+            <figure class="study-figure">
+              <img src="website/assets/02_sensors_optical_flow.svg" alt="無人機側面構造、IMU、氣壓計、前方AI鏡頭與底部光流感測器原理圖" width="800" height="420" loading="lazy" />
+              <figcaption>
+                ▲ 自製教學圖解 1-2：室內無 GPS 三大感測器與光流定位地面材質對比｜外部參考：
+                <a href="https://www.dji.com/tw/support/product/neo" target="_blank" rel="noopener noreferrer">DJI Neo 官方使用者手冊與視覺定位說明</a>
+              </figcaption>
+            </figure>
+
+            <h4>3. 邊緣 AI 視覺追蹤 (Edge AI)</h4>
+            <p>
+              DJI Neo 不需要連網到雲端，機身內的 AI 晶片就能即時辨識人像與身體輪廓（Follow / Dronie）。但當<strong>光線太暗、移動速度過快、或被柱子遮擋</strong>時，AI 演算法會遺失特徵點（Features），導致跟丟目標。
+            </p>
+          </div>
+        </details>
+
+        <details class="study-unit">
+          <summary>Unit 2（第 2 週講義）：Wi-Fi 無線通訊、Mode 2 搖桿與飛行演算法</summary>
+          <div class="study-body">
+            <h4>1. 無線通訊：2.4GHz vs. 5.8GHz 的選擇</h4>
+            <ul>
+              <li><strong>2.4GHz 頻段</strong>：波長較長、穿透力好，但教室內 7 台飛機加上 30 支手機同時開啟 Wi-Fi / 藍牙時，頻道容易擁擠產生延遲。</li>
+              <li><strong>5.8GHz 頻段</strong>：可用頻道較寬、抗干擾與即時圖傳速度較快，適合近距離室內穩定控制。</li>
+            </ul>
+
+            <h4>2. 美國手 (Mode 2) 空間四軸控制圖解</h4>
+            <div class="stick-grid">
+              <div class="stick-box">
+                <strong>🕹️ 左搖桿 (Left Stick)</strong>
+                <p>⬆️⬇️ 上下推：<strong>油門 Throttle</strong>（上升 / 下降）</p>
+                <p>⬅️➡️ 左右推：<strong>偏航 Yaw</strong>（機頭左轉 / 右轉）</p>
+              </div>
+              <div class="stick-box">
+                <strong>🕹️ 右搖桿 (Right Stick)</strong>
+                <p>⬆️⬇️ 上下推：<strong>俯仰 Pitch</strong>（前進 / 後退）</p>
+                <p>⬅️➡️ 左右推：<strong>橫滾 Roll</strong>（向左平移 / 向右平移）</p>
+              </div>
+            </div>
+            <figure class="study-figure">
+              <img src="website/assets/03_mode2_sticks_axes.svg" alt="美國手 Mode 2 左搖桿與右搖桿空間四軸操控方向圖解" width="800" height="420" fetchpriority="low" loading="lazy" />
+              <figcaption>
+                ▲ 自製教學圖解 2-1：美國手 (Mode 2) 雙搖桿四動作圖解｜外部參考：
+                <a href="https://commons.wikimedia.org/wiki/File:Flight_dynamics_with_text.svg" target="_blank" rel="noopener noreferrer">Wikimedia 飛行器三軸姿態 (Pitch / Roll / Yaw) 圖解</a>
+              </figcaption>
+            </figure>
+
+            <div class="ext-ref-grid">
+              <figure class="study-figure ext-figure">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flight_dynamics_with_text.svg" alt="Wikimedia Commons 飛行器三軸姿態 Pitch Roll Yaw 參考圖" width="420" height="280" fetchpriority="low" loading="lazy" />
+                <figcaption>🌐 外部維基圖資：飛行器三軸姿態 (Roll / Pitch / Yaw)</figcaption>
+              </figure>
+              <figure class="study-figure ext-figure">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Quadrotoryaw.svg" alt="Wikimedia Commons 四軸飛行器正反槳扭矩與偏航原理參考圖" width="420" height="280" fetchpriority="low" loading="lazy" />
+                <figcaption>🌐 外部維基圖資：四軸正反槳推力與反扭力分佈</figcaption>
+              </figure>
+            </div>
+
+            <h4>3. 飛行演算法與 Debug（除錯）</h4>
+            <p>
+              寫程式控制無人機飛正方形，需結合<strong>序列（Sequence）</strong>與<strong>迴圈（Loop: 重複 4 次前進+右轉）</strong>。但真實世界有氣流與電量下降，因此需要加入<strong>條件判斷（IF 偏離 THEN 微調）</strong>並反覆測試參數，這就是工程上的 <strong>Debug（除錯）</strong>。
+            </p>
+          </div>
+        </details>
+
+        <details class="study-unit">
+          <summary>Unit 3（第 3 週講義）：人機介面 (HCI) 為什麼實體搖桿比手機觸控準？</summary>
+          <div class="study-body">
+            <h4>1. 觸覺回饋 (Tactile Feedback) 與盲操作</h4>
+            <p>
+              手機玻璃螢幕是平的，沒有彈簧回正力量，飛手眼睛很容易在「看飛機」與「低頭找螢幕搖桿位置」之間分心；而實體遙控手柄（Controller）具備<strong>物理彈簧自動置中</strong>，只要手指放開就能瞬間煞車懸停，讓飛手能專注盯緊無人機。
+            </p>
+            <h4>2. 通訊協定與抗干擾差異</h4>
+            <p>
+              手機純靠一般 Wi-Fi 與飛機連線，容易受現場其他手機熱點干擾；實體遙控手柄則使用專用高抗干擾射頻協定與高增益天線，因此操作指令的「延遲（Latency）」更低、反應更即時。
+            </p>
+            <figure class="study-figure">
+              <img src="website/assets/04_palm_takeoff_and_hci.svg" alt="掌上起降正確手掌平伸姿勢與手機觸控對比實體遙控手柄之HCI圖解" width="800" height="420" fetchpriority="low" loading="lazy" />
+              <figcaption>
+                ▲ 自製教學圖解 3-1：掌上起降安全姿勢 SOP 與人機介面 (HCI) 比較｜外部參考：
+                <a href="https://www.dji.com/tw/neo" target="_blank" rel="noopener noreferrer">DJI Neo 掌上起降與多元操控方式官方展示</a>
+              </figcaption>
+            </figure>
+          </div>
+        </details>
+
+        <details class="study-unit">
+          <summary>Unit 4（第 4 週講義）：無人機 × AI 在台灣與東南亞的真實應用</summary>
+          <div class="study-body">
+            <ul>
+              <li><strong>🌾 智慧農業與病蟲害 AI 辨識</strong>：在台灣茶園、稻田以及越南湄公河三角洲、印尼大型農園，無人機透過多光譜鏡頭與 AI 影像分析，精準找出缺水或染病作物，減少農藥浪費。</li>
+              <li><strong>🏔️ 山區災害搜救與 3D 測繪</strong>：面對台灣或緬甸山區的地震、土石流，無人機可先飛入危險區域拍攝地形並即時建立 3D 地圖，協助救難隊規劃安全路線。</li>
+              <li><strong>⚡ 基礎設施巡檢</strong>：取代人工攀爬高壓電塔或太陽能板，結合熱顯像儀自動偵測設備過熱異常點。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <section class="quiz-box" aria-labelledby="quiz-heading">
+        <h3 id="quiz-heading">📝 隨堂自我檢測（讀完講義馬上試試看！）</h3>
+        <div id="quiz-container" class="quiz-list"></div>
+      </section>
+    </section>
+
+    <!-- TAB 0.5: 每週實作檢核與課後作業 -->
+    <section id="panel-homework" role="tabpanel" aria-labelledby="tab-homework" class="tab-panel" hidden>
+      <div class="callout callout-info">
+        <span aria-hidden="true">✍️</span>
+        <div>
+          <strong>每週課堂實作闖關 ＆ 課後作業系統：</strong>
+          請選擇週次、勾選當堂完成的實作任務並填寫課後作業（系統會自動暫存於瀏覽器），完成後可一鍵複製或列印繳交給老師！
+        </div>
+      </div>
+
+      <form id="homework-form" action="#panel-homework" method="POST" class="hw-form" novalidate>
+        <fieldset class="hw-fieldset">
+          <legend>1. 選擇課程週次與填寫組別資料</legend>
+
+          <div class="form-group">
+            <span class="field-label" id="week-radio-label">選擇要檢核／繳交的週次（必選）：</span>
+            <div class="radio-cards" role="radiogroup" aria-labelledby="week-radio-label">
+              <label class="radio-card">
+                <input type="radio" name="hw_week" value="w1" checked />
+                <span><strong>第 1 週</strong><small>感測器與掌上 AI</small></span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="hw_week" value="w2" />
+                <span><strong>第 2 週</strong><small>Wi-Fi 與飛行演算法</small></span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="hw_week" value="w3" />
+                <span><strong>第 3 週</strong><small>HCI 實驗與賽道設計</small></span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="hw_week" value="w4" />
+                <span><strong>第 4 週</strong><small>綜合挑戰賽與提案</small></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="hw-meta-grid">
+            <div class="form-group">
+              <label for="hw-group">組別編號 (1–7 組，必填)</label>
+              <input type="text" id="hw-group" name="group_id" inputmode="numeric" pattern="[1-8]" maxlength="1" required aria-describedby="hw-group-hint" />
+              <span id="hw-group-hint" class="field-hint">請輸入數字 1 至 7（對應無人機 #01–#07）</span>
+            </div>
+
+            <div class="form-group">
+              <label for="hw-name">填表代表／學生姓名 (必填)</label>
+              <input type="text" id="hw-name" name="student_name" autocomplete="name" maxlength="80" required aria-describedby="hw-name-hint" />
+              <span id="hw-name-hint" class="field-hint">支援中、英、越、印、緬文姓名輸入</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="hw-fieldset">
+          <legend id="hw-checklist-legend">2. 🛠️ 第 1 週課堂實作闖關檢核（當堂完成打勾）</legend>
+          <div id="hw-checklist-box" class="hw-checklist"></div>
+        </fieldset>
+
+        <fieldset class="hw-fieldset">
+          <legend id="hw-prompt-legend">3. 📝 第 1 週課後延伸作業（Take-Home Assignment）</legend>
+          <div class="form-group">
+            <label for="hw-answer" id="hw-question-label">課後作業作答區（必填）：</label>
+            <p id="hw-question-desc" class="field-hint hw-prompt-text"></p>
+            <textarea id="hw-answer" name="homework_answer" rows="4" maxlength="1000" required aria-describedby="hw-question-desc"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="hw-actions">
+          <button type="submit" id="hw-submit-btn" class="btn btn-primary">產生並儲存本週作業單</button>
+          <button type="button" id="hw-copy-btn" class="btn btn-secondary">📋 複製作業內容</button>
+          <button type="button" id="hw-print-btn" class="btn btn-secondary">🖨️ 列印 / 存成 PDF</button>
+        </div>
+        <p id="hw-status" class="hw-status" aria-live="polite"></p>
+      </form>
+
+      <output id="hw-output" class="hw-output" for="hw-group hw-name hw-answer" hidden></output>
+    </section>
+
+    <!-- TAB 1: 4 週課程 -->
+    <section id="panel-curriculum" role="tabpanel" aria-labelledby="tab-curriculum" class="tab-panel" hidden>
+      <div class="callout callout-info">
+        <span aria-hidden="true">⚡</span>
+        <div>
+          <strong>100 分鐘連排「雙波段補電」黃金節奏：</strong>
+          理論準備 (25m) ➔ 第一波實飛 (12–15m) ➔ <strong>下課 10m + 討論 15m 集體 Type-C 快充 (共 25m)</strong> ➔ 第二波實飛 (15m) ➔ 總結收機 (10m)。
+        </div>
+      </div>
+
+      <div class="weeks-grid">
+        <article class="week-card">
+          <div class="week-header">
+            <span class="week-badge">Week 1</span>
+            <h3>嵌入式感測器與邊緣 AI 視覺追蹤</h3>
+          </div>
+          <p class="week-focus"><strong>資訊核心：</strong>IMU、氣壓計、底部光流定位 (Optical Flow)、邊緣 AI 辨識極限</p>
+          <ul class="timeline-list">
+            <li><span>00–25m</span> 四角色分配（每 10 分鐘輪替）＋ 多語安全手勢練習 ＋ 構造解剖</li>
+            <li><span>25–38m</span> <strong>實飛 1：</strong>無遙控掌上起降 ＋ Follow / Dronie AI 模式初體驗</li>
+            <li><span>38–63m</span> <strong>充電 25m：</strong>下課補電 ＋ 設計 3 項 AI 追蹤極限變因（速度/遮擋/暗處）</li>
+            <li><span>63–78m</span> <strong>實飛 2：</strong>執行 AI 極限測試並記錄跟丟條件</li>
+            <li><span>78–100m</span> 數據彙整：為何光流怕全黑或純白反光地面？</li>
+          </ul>
+          <div class="week-deliverables">
+            <p><strong>🛠️ 當堂實作：</strong>(1) 卸下 <code>[1] 雲台罩</code> 與全員掌上起降 1 次；(2) 測試 3 項 AI 追蹤極限變因；(3) <code>[9] USB-C</code> 中場補電。</p>
+            <p><strong>📝 課後作業：</strong>找出校園中 1 個「適合光流定位」與 1 個「會導致光流漂移」的地面材質並說明原因；手機安裝 DJI Fly App。</p>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-header">
+            <span class="week-badge">Week 2</span>
+            <h3>無線通訊架構與飛行演算法</h3>
+          </div>
+          <p class="week-focus"><strong>資訊核心：</strong>2.4GHz vs 5.8GHz Wi-Fi 干擾、空間四軸變數、虛擬碼與 Debug</p>
+          <ul class="timeline-list">
+            <li><span>00–25m</span> Wi-Fi SSID 防連錯配對 ＋ Mode 2 四動作（Throttle/Yaw/Pitch/Roll）</li>
+            <li><span>25–38m</span> <strong>實飛 1：</strong>手機虛擬搖桿懸停 10 秒 ＋ 原地升降與 90° 轉向手感練習</li>
+            <li><span>38–65m</span> <strong>充電 25m：</strong>編寫正方形巡航虛擬碼（含 <code>REPEAT 4</code> 與 <code>IF</code> 修正）</li>
+            <li><span>65–82m</span> <strong>實飛 2：</strong>演算法驗證、參數 Debug 修改秒數 ＋ 低空穿框</li>
+            <li><span>82–100m</span> 討論觸控介面無置中回饋造成的軌跡誤差</li>
+          </ul>
+          <div class="week-deliverables">
+            <p><strong>🛠️ 當堂實作：</strong>(1) 正確配對專屬編號 Wi-Fi；(2) 依正方形虛擬碼實飛 2 次並 Debug 秒數；(3) 低空穿越 80cm 門框。</p>
+            <p><strong>📝 課後作業：</strong>使用網站「演算法模擬器」記錄 15° 偏航修正前後誤差；推論電池 100% 與 25% 對相同秒數飛行距離的影響。</p>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-header">
+            <span class="week-badge">Week 3</span>
+            <h3>人機介面 (HCI) 量化實驗與賽道工程</h3>
+          </div>
+          <p class="week-focus"><strong>資訊核心：</strong>觸控虛擬搖桿 vs 實體遙控手柄延遲比較、系統整合測試</p>
+          <ul class="timeline-list">
+            <li><span>00–20m</span> HCI 對照實驗規則說明（2 台手柄預綁定 <code>#01/#02</code> 人換機不換）</li>
+            <li><span>20–45m</span> <strong>實飛 1：</strong>A/B 雙站輪替飛「S 型繞標 + 降落」，記錄秒數與出界數</li>
+            <li><span>45–72m</span> <strong>充電＋分析：</strong>計算全班平均值 ＋ 搭建複合賽道（呼拉圈/三角錐）</li>
+            <li><span>72–88m</span> <strong>實飛 2：</strong>賽道壓力測試與結構微調</li>
+            <li><span>88–100m</span> 公布第 4 週跨文化挑戰賽規則與電池全面充飽</li>
+          </ul>
+          <div class="week-deliverables">
+            <p><strong>🛠️ 當堂實作：</strong>(1) 完成手機 vs. 實體手柄 S 型繞標計時與落點誤差測量；(2) 繪製草圖並搭建安全障礙賽道試飛。</p>
+            <p><strong>📝 課後作業：</strong>用網站「HCI 計算機」算出手柄效率提升百分比；提交第 4 週決賽三階段飛手與多語觀察員分工策略單。</p>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-header">
+            <span class="week-badge">Week 4</span>
+            <h3>智慧無人機挑戰賽與成果發表</h3>
+          </div>
+          <p class="week-focus"><strong>資訊核心：</strong>多階段任務整合、數位影像偵察、AI 與農業/防災產業連結</p>
+          <ul class="timeline-list">
+            <li><span>00–15m</span> 檢核與雙軌遙控手柄 PK 賽制說明（7 組分 4 輪極省電完成）</li>
+            <li><span>15–40m</span> <strong>正式賽：</strong>雙門穿越 ➔ 俯拍台/越/印/緬多語密碼牌 ➔ 同心圓降落</li>
+            <li><span>40–70m</span> 下課休息 ＋ 匯出 DJI Fly App 偵察影像 ＋ 製作 2 分鐘短講</li>
+            <li><span>70–90m</span> 各組上台展示影像與 Debug 歷程（鼓勵母語問候互動）</li>
+            <li><span>90–100m</span> 產業應用連結（台灣 × 東南亞智慧農業/救災）＋ 頒獎</li>
+          </ul>
+          <div class="week-deliverables">
+            <p><strong>🛠️ 當堂實作：</strong>(1) 完成雙軌 PK 三階段接力賽；(2) 匯出清晰多語密碼牌偵察照；(3) 完成 2 分鐘團隊 Debug 成果發表。</p>
+            <p><strong>📝 課後作業：</strong>撰寫 100 字「台灣／越南／印尼／緬甸無人機 × AI 解決家鄉問題」微型提案（含使用感測器與解決痛點）。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2: 多語安全圖卡 -->
+    <section id="panel-multilingual" role="tabpanel" aria-labelledby="tab-multilingual" class="tab-panel" hidden>
+      <div class="toolbar">
+        <div class="filter-group" role="group" aria-label="篩選僑生母語顯示">
+          <span class="filter-label">選擇顯示語言：</span>
+          <button type="button" class="chip active" data-lang="all">全部顯示</button>
+          <button type="button" class="chip" data-lang="vi">🇻🇳 越南語 (Tiếng Việt)</button>
+          <button type="button" class="chip" data-lang="id">🇮🇩 印尼語 (Bahasa Indonesia)</button>
+          <button type="button" class="chip" data-lang="my">🇲🇲 緬甸語 (မြန်မာ)</button>
+        </div>
+        <button type="button" id="print-cards-btn" class="btn btn-secondary">🖨️ 列印安全圖卡</button>
+      </div>
+
+      <h3 class="section-heading">一、 高頻安全與補電口令</h3>
+      <div class="table-scroll">
+        <table class="data-table" id="safety-table">
+          <thead>
+            <tr>
+              <th scope="col">情境</th>
+              <th scope="col">繁體中文</th>
+              <th scope="col">English</th>
+              <th scope="col" class="col-vi">越南語 Tiếng Việt</th>
+              <th scope="col" class="col-id">印尼語 Indonesia</th>
+              <th scope="col" class="col-my">緬甸語 မြန်မာ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>🛑 緊急停止</strong></td>
+              <td>停！全部退後！</td>
+              <td>STOP! Step back!</td>
+              <td class="col-vi">Dừng lại! Lùi ra!</td>
+              <td class="col-id">Berhenti! Mundur!</td>
+              <td class="col-my">ရပ်ပါ! နောက်ဆုတ်!</td>
+            </tr>
+            <tr>
+              <td><strong>🟢 確認淨空</strong></td>
+              <td>周圍淨空！</td>
+              <td>Area clear!</td>
+              <td class="col-vi">Khu vực an toàn!</td>
+              <td class="col-id">Area aman!</td>
+              <td class="col-my">နေရာရှင်းပြီ!</td>
+            </tr>
+            <tr>
+              <td><strong>🛫 準備起飛</strong></td>
+              <td>我要起飛了！</td>
+              <td>Taking off!</td>
+              <td class="col-vi">Chuẩn bị cất cánh!</td>
+              <td class="col-id">Siap lepas landas!</td>
+              <td class="col-my">ပျံတက်မယ်!</td>
+            </tr>
+            <tr>
+              <td><strong>🛬 準備降落</strong></td>
+              <td>我要降落了！</td>
+              <td>Landing!</td>
+              <td class="col-vi">Chuẩn bị hạ cánh!</td>
+              <td class="col-id">Siap mendarat!</td>
+              <td class="col-my">ဆင်းသက်မယ်!</td>
+            </tr>
+            <tr>
+              <td><strong>🔋 電量過低</strong></td>
+              <td>電量不足，快降落！</td>
+              <td>Low battery, land now!</td>
+              <td class="col-vi">Pin yếu, hạ cánh ngay!</td>
+              <td class="col-id">Baterai lemah, mendarat!</td>
+              <td class="col-my">ဘက်ထရီနည်းပြီ ဆင်းပါ!</td>
+            </tr>
+            <tr>
+              <td><strong>🔌 中場補電</strong></td>
+              <td>關機去充電！</td>
+              <td>Power off &amp; charge!</td>
+              <td class="col-vi">Tắt máy và sạc pin!</td>
+              <td class="col-id">Matikan dan isi daya!</td>
+              <td class="col-my">စက်ပိတ်ပြီး အားသွင်းပါ!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-heading">二、 跨語言無聲安全手勢（7 機同飛噪音大時使用）</h3>
+      <div class="gestures-grid">
+        <div class="gesture-card">
+          <span class="gesture-icon" aria-hidden="true">🙅</span>
+          <h4>雙手頭頂交叉 X</h4>
+          <p><strong>立刻降落 / 停止操作</strong><br>最高等級緊急停止手勢</p>
+        </div>
+        <div class="gesture-card">
+          <span class="gesture-icon" aria-hidden="true">☝️</span>
+          <h4>單手食指比 1 畫圈</h4>
+          <p><strong>準備起飛</strong><br>確認組員都點頭後再起飛</p>
+        </div>
+        <div class="gesture-card">
+          <span class="gesture-icon" aria-hidden="true">🖐️⬇️</span>
+          <h4>手掌平伸往下壓</h4>
+          <p><strong>降低高度</strong><br>提醒飛手超過 1.5m 限制</p>
+        </div>
+        <div class="gesture-card">
+          <span class="gesture-icon" aria-hidden="true">🙌</span>
+          <h4>雙手張開平推向外</h4>
+          <p><strong>退後保持 1.5m</strong><br>請圍觀人員退至安全線外</p>
+        </div>
+        <div class="gesture-card">
+          <span class="gesture-icon" aria-hidden="true">👍</span>
+          <h4>拇指朝上</h4>
+          <p><strong>場地淨空 / 成功</strong><br>任務確認與正向回饋</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">三、 第 4 週偵察關卡：多語通關密碼牌</h3>
+      <div class="passcode-grid">
+        <div class="passcode-card">
+          <span class="flag" aria-hidden="true">🇹🇼</span>
+          <strong>你好，台灣！</strong>
+          <span>WELCOME!</span>
+          <code>Passcode: IT-TW01</code>
+        </div>
+        <div class="passcode-card">
+          <span class="flag" aria-hidden="true">🇻🇳</span>
+          <strong>XIN CHÀO!</strong>
+          <span>你好（越南語）</span>
+          <code>Passcode: IT-VN02</code>
+        </div>
+        <div class="passcode-card">
+          <span class="flag" aria-hidden="true">🇮🇩</span>
+          <strong>SELAMAT PAGI!</strong>
+          <span>早安 / 你好（印尼語）</span>
+          <code>Passcode: IT-ID03</code>
+        </div>
+        <div class="passcode-card">
+          <span class="flag" aria-hidden="true">🇲🇲</span>
+          <strong>မင်္ဂလာပါ!</strong>
+          <span>你好（緬甸語）</span>
+          <code>Passcode: IT-MM04</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 資訊科技互動實驗室 -->
+    <section id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" class="tab-panel" hidden>
+      <div class="lab-grid">
+        <!-- 互動工具 1: 演算法路徑模擬器 -->
+        <article class="lab-card">
+          <h3>🧭 第 2 週實驗：飛行演算法與除錯模擬器</h3>
+          <p class="lab-desc">調整虛擬碼中的前進秒數、轉向與側風誤差，觀察「未修正」與「加入 <code>IF-ELSE</code> 修正」的軌跡差異。</p>
+
+          <form id="algo-form" class="lab-controls">
+            <div class="control-row">
+              <label for="fwd-sec">前進時間 (Pitch 秒數): <strong id="fwd-sec-val">2.0s</strong></label>
+              <input type="range" id="fwd-sec" min="1" max="4" step="0.5" value="2" />
+            </div>
+            <div class="control-row">
+              <label for="drift-deg">室內氣流 / 觸控偏航誤差: <strong id="drift-deg-val">12°</strong></label>
+              <input type="range" id="drift-deg" min="0" max="25" step="1" value="12" />
+            </div>
+            <div class="control-row checkbox-row">
+              <input type="checkbox" id="enable-fix" />
+              <label for="enable-fix">啟用 <code>IF 偏航 THEN 微調修正</code> 演算法補償</label>
+            </div>
+          </form>
+
+          <div class="sim-stage">
+            <svg id="flight-svg" viewBox="0 0 320 240" role="img" aria-label="無人機正方形路徑演算法模擬圖">
+              <defs>
+                <pattern id="grid-bg" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-opacity="0.1" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="320" height="240" fill="url(#grid-bg)" />
+              <path id="ideal-path" d="" fill="none" stroke="#94a3b8" stroke-dasharray="5,5" stroke-width="2" />
+              <path id="actual-path" d="" fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="80" cy="180" r="6" fill="#16a34a" />
+              <text x="80" y="200" text-anchor="middle" font-size="11" fill="currentColor">起點/目標點</text>
+              <circle id="end-dot" cx="80" cy="180" r="5" fill="#dc2626" />
+            </svg>
+            <p id="sim-status" class="sim-status" aria-live="polite"></p>
+          </div>
+        </article>
+
+        <!-- 互動工具 2: HCI 實驗數據統計 -->
+        <article class="lab-card">
+          <h3>📊 第 3 週實驗：手機 vs. 手柄 HCI 數據計算機</h3>
+          <p class="lab-desc">課堂投影專用！輸入各組實驗秒數（逗號分隔），即時計算「手機觸控」與「實體遙控手柄」的平均耗時差異。</p>
+
+          <div class="lab-controls">
+            <div class="control-row">
+              <label for="app-times">📱 手機 Wi-Fi 虛擬搖桿完成秒數（例：48, 52, 45, 60）</label>
+              <input type="text" id="app-times" value="48, 55, 51, 62, 49" />
+            </div>
+            <div class="control-row">
+              <label for="ctrl-times">🎮 實體遙控手柄完成秒數（例：32, 29, 35, 31）</label>
+              <input type="text" id="ctrl-times" value="32, 29, 35, 31, 34" />
+            </div>
+            <button type="button" id="calc-hci-btn" class="btn btn-primary">計算全班平均數據</button>
+          </div>
+
+          <div class="hci-results" id="hci-results" aria-live="polite">
+            <div class="bar-group">
+              <div class="bar-label"><span>📱 手機 Wi-Fi 平均</span><strong id="app-avg-text">53.0 秒</strong></div>
+              <div class="bar-track"><div class="bar-fill bar-app" id="app-bar" style="inline-size: 80%"></div></div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-label"><span>🎮 實體手柄平均</span><strong id="ctrl-avg-text">32.2 秒</strong></div>
+              <div class="bar-track"><div class="bar-fill bar-ctrl" id="ctrl-bar" style="inline-size: 48%"></div></div>
+            </div>
+            <p class="hci-summary" id="hci-summary">實體遙控手柄平均快了 <strong>39.2%</strong>，顯示實體觸覺回饋與低延遲協定對精準操控有顯著幫助。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 4: 場地配置與評量 -->
+    <section id="panel-arena" role="tabpanel" aria-labelledby="tab-arena" class="tab-panel" hidden>
+      <h3 class="section-heading">一、 教室 / 禮堂場地配置圖（7 飛行格 × 中央 PD 快充站）</h3>
+      <div class="arena-map" role="img" aria-label="7 個 3x3 公尺飛行格與中央快充控制台配置圖">
+        <div class="arena-center">
+          <strong>🔌 中央安全走廊 ＆ PD 快充工作站</strong>
+          <span>教師控制台（DJI Neo 2 示範機）｜ 7 條 Type-C 快充線 ｜ 2 顆全班備用電池</span>
+        </div>
+        <div class="arena-bays">
+          <div class="bay bay-handle"><strong>#01 組</strong><span>3m × 3m</span><small>第 3 週手柄 A 站</small></div>
+          <div class="bay bay-handle"><strong>#02 組</strong><span>3m × 3m</span><small>第 3 週手柄 A 站</small></div>
+          <div class="bay"><strong>#03 組</strong><span>3m × 3m</span><small>手機 B 站</small></div>
+          <div class="bay"><strong>#04 組</strong><span>3m × 3m</span><small>手機 B 站</small></div>
+          <div class="bay"><strong>#05 組</strong><span>3m × 3m</span><small>手機 B 站</small></div>
+          <div class="bay"><strong>#06 組</strong><span>3m × 3m</span><small>手機 B 站</small></div>
+          <div class="bay"><strong>#07 組</strong><span>3m × 3m</span><small>手機 B 站</small></div>
+        </div>
+      </div>
+
+      <div class="callout callout-warn">
+        <span aria-hidden="true">⚠️</span>
+        <div>
+          <strong>賽道搭建三大禁忌：</strong>
+          (1) 禁止使用細繩、魚線或網狀物（會捲死馬達）；
+          (2) 禁止設在冷氣或電扇出風口正下方；
+          (3) 若地板全黑或鏡面反光，務必貼膠帶或鋪報紙增加紋理，否則底部光流鏡頭無法定點！
+        </div>
+      </div>
+
+      <h3 class="section-heading">二、 資訊科技課程評量規準 (Assessment Rubric)</h3>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">評量向度</th>
+              <th scope="col">優良 (3 分)</th>
+              <th scope="col">良好 (2 分)</th>
+              <th scope="col">待加強 (1 分)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>資訊原理與數據 (35%)</strong></td>
+              <td>能準確解釋光流定位、通訊干擾與 HCI 延遲差異；虛擬碼具備迴圈與 Debug 紀錄。</td>
+              <td>大致能說出感測與操控差異；學習單有完成基本數據紀錄。</td>
+              <td>僅停留於試飛娛樂，無法解釋誤差原因。</td>
+            </tr>
+            <tr>
+              <td><strong>安全與跨文化協作 (25%)</strong></td>
+              <td>嚴格遵守 1.5m 淨空與快充紀律；四角色確實輪替，主動以圖卡或手勢協助隊友。</td>
+              <td>大部分時間遵守安全規範與輪替，能配合團隊指示。</td>
+              <td>曾未確認淨空即起飛，或未落實換手。</td>
+            </tr>
+            <tr>
+              <td><strong>操控與任務達成 (25%)</strong></td>
+              <td>穩定控制懸停、穿框與降落；順利完成第 4 週三階段挑戰並清晰拍下密碼牌。</td>
+              <td>能完成基本起降與部分障礙穿越，偶有偏航但能修正。</td>
+              <td>無法穩定控制高度或方向，多次碰撞中斷。</td>
+            </tr>
+            <tr>
+              <td><strong>賽道與成果發表 (15%)</strong></td>
+              <td>賽道安全具創意；發表能清楚呈現影像並用數據說明 Debug 歷程。</td>
+              <td>賽道符合安全規範；能簡要說明團隊成果。</td>
+              <td>賽道忽略安全間距；發表過於簡略。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>高中無人機資訊科技跨領域教案平台｜7× DJI Neo + 1× Neo 2 + 2× 遙控手柄專用設計</p>
+    </div>
+  </footer>
+
+  <!-- 原生 Modal Dialog：課堂倒數計時器 -->
+  <dialog id="timer-dialog" class="timer-dialog" aria-labelledby="timer-dialog-title">
+    <div class="dialog-header">
+      <h2 id="timer-dialog-title">⏱️ 課堂實作與快充計時器</h2>
+      <button type="button" id="close-timer-btn" class="btn-icon" aria-label="關閉計時器">✕</button>
+    </div>
+    <div class="timer-display" id="timer-display" aria-live="off">10:00</div>
+    <div class="timer-presets">
+      <button type="button" class="btn btn-secondary preset-btn" data-seconds="600">🔄 10 分鐘換手</button>
+      <button type="button" class="btn btn-secondary preset-btn" data-seconds="720">🚁 12 分鐘實飛</button>
+      <button type="button" class="btn btn-secondary preset-btn" data-seconds="1500">🔌 25 分鐘快充</button>
+    </div>
+    <div class="timer-controls">
+      <button type="button" id="timer-start-btn" class="btn btn-primary">開始計時</button>
+      <button type="button" id="timer-reset-btn" class="btn btn-secondary">重設</button>
+    </div>
+  </dialog>
+
+  <script src="website/app.js"></script>
 </body>
 </html>
